@@ -5,16 +5,35 @@
       -->
 
     <target name="install" description="Install the vagrantfile and provisioning into your project.">
-        <fail unless="name" message="'name' must be provided with `-Dname=PROJECTNAME`." />
-        <echo message="Hello World!" />
+        <propertyprompt propertyName="projectname" defaultValue="drupal-skeleton" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true" />
+        <propertyprompt propertyName="copy" promptText="Copy Ansible roles into your project for customization" promptCharacter="y/n ?" useExistingValue="true" />
 
-        <resolvepath propertyname="project.path" file="." />
-        <echoproperties />
-        
-        <copy file="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile" tofile="./Vagrantfile">
+        <property name="vagrant.installdir" value="${application.startdir}" />
+        <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning" />
+        <property name="vagrant.vagrantfile.source" value="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile" />
+        <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile" />
+
+        <if>
+          <equals arg1="${copy}" arg2="y" />
+          <then>
+            <!-- Provision from copies of the playbooks from the-vagrant -->
+            <property name="vagrant.ansible.playbook" value="provisioning/${projectname}.yml" />
+            <copy todir="${vagrant.installdir}/provisioning">
+              <fileset dir="${vagrant.ansible.source}" />
+            </copy>
+            <move file="${vagrant.installdir}/provisioning/drupal8-skeleton.yml" tofile="${vagrant.installdir}/provisioning/${projectname}.yml" />
+          </then>
+          <else>
+            <!-- Provision directly from the-vagrant playbooks -->
+            <property name="vagrant.ansible.playbook" value="vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/drupal8-skeleton.yml" />
+          </else>
+        </if>
+
+        <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
           <filterchain>
             <replacetokens>
-              <token key="projectname" value="${name}" />
+              <token key="projectname" value="${projectname}" />
+              <token key="playbook" value="${vagrant.ansible.playbook}" />
             </replacetokens>
           </filterchain>
         </copy>
