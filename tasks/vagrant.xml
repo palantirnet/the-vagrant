@@ -39,4 +39,21 @@
         </copy>
     </target>
 
+    <target name="remove" description="Remove the vagrantfile and provisioning from your project.">
+        <propertyprompt propertyName="delete" promptText="Are you sure you want to delete the Vagrantfile and any local provisioning? You may want to `vagrant destroy` first." promptCharacter="y/N :" useExistingValue="true" />
+
+        <property name="vagrant.installdir" value="${application.startdir}" />
+
+        <if>
+          <equals arg1="${delete}" arg2="y" />
+          <then>
+            <delete file="${vagrant.installdir}/Vagrantfile" />
+            <delete dir="${vagrant.installdir}/provisioning" />
+          </then>
+          <else>
+            <echo>Ok, nevermind.</echo>
+          </else>
+        </if>
+    </target>
+
 </project>

@@ -13,3 +13,9 @@ You may set the two properties from the command line to avoid the interactive pr
 ```
 vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml -Dprojectname=PROJECTNAME -Dcopy=n
 ```
+
+And then you can remove the-vagrant with:
+
+```
+vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml remove
+```
