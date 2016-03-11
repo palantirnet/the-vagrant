@@ -1,0 +1,23 @@
+<project name="Vagrant" default="install">
+    <!--
+      This can be used to install our current vagrant machine and provisioning
+      in a project.
+      -->
+
+    <target name="install" description="Install the vagrantfile and provisioning into your project.">
+        <fail unless="name" message="'name' must be provided with `-Dname=PROJECTNAME`." />
+        <echo message="Hello World!" />
+
+        <resolvepath propertyname="project.path" file="." />
+        <echoproperties />
+        
+        <copy file="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile" tofile="./Vagrantfile">
+          <filterchain>
+            <replacetokens>
+              <token key="projectname" value="${name}" />
+            </replacetokens>
+          </filterchain>
+        </copy>
+    </target>
+
+</project>
