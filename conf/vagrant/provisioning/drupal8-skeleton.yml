@@ -6,4 +6,5 @@
     system_packages: ["php5-gd"]
   roles:
     - { role: common }
+    - { role: php }
     - { role: drupal }
