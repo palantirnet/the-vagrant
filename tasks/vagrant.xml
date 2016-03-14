@@ -5,9 +5,13 @@
         in a project.
       -->
 
+    <basename property="default.projectname" file="${application.startdir}" suffix="local" />
+
+
+    <!-- Target: install -->
     <target name="install" description="Install the vagrantfile and provisioning into your project.">
-        <propertyprompt propertyName="projectname" defaultValue="drupal-skeleton" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
-        <propertyprompt propertyName="copy" promptText="Copy Ansible roles into your project for customization" promptCharacter="y/n ?" useExistingValue="true"/>
+        <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
+        <input propertyName="copy" message="Copy Ansible roles into your project for customization" promptChar="?" validArgs="Y,n" />
 
         <property name="vagrant.installdir" value="${application.startdir}"/>
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
