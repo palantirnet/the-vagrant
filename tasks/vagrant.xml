@@ -34,6 +34,9 @@
             </else>
         </if>
 
+        <!-- Copy the drush alias script -->
+        <copy file="${vagrant.bin.source}/drush" tofile="${vagrant.bin.dest}/drush"/>
+
         <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
             <filterchain>
                 <replacetokens>
