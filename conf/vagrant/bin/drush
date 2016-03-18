@@ -5,7 +5,7 @@
 # drush.
 #
 # To use it, add a line like this to your ~/.profile:
-# alias drush=/var/www/sdsu.local/bin/current-drush
+# alias drush=/var/www/PROJECT_NAME.local/bin/drush
 #
 # Then, try `drush status` from your home directory, and again from the project
 # root.
