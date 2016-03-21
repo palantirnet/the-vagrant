@@ -17,8 +17,6 @@
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
         <property name="vagrant.vagrantfile.source" value="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile"/>
         <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile"/>
-        <property name="vagrant.bin.source" value="${phing.dir.vagrant}/../conf/vagrant/bin" />
-        <property name="vagrant.bin.dest" value="${vagrant.installdir}/bin" />
 
         <if>
             <equals arg1="${copy}" arg2="Y"/>
@@ -35,9 +33,6 @@
                 <property name="vagrant.ansible.playbook" value="vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/drupal8-skeleton.yml"/>
             </else>
         </if>
-
-        <!-- Copy the drush alias script -->
-        <copy file="${vagrant.bin.source}/drush" tofile="${vagrant.bin.dest}/drush"/>
 
         <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
             <filterchain>
