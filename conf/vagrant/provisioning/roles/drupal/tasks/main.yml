@@ -22,5 +22,5 @@
 
 - name: Drupal8 | Create Drush Alias
   sudo: yes
-  shell: echo 'export PATH=$PATH:/var/www/{{ hostname }}/bin'  >> ~/.bash_profile
+  shell: echo 'export PATH=$PATH:/var/www/{{ hostname }}/bin'  >> ~/.profile
   tags: drupal8
