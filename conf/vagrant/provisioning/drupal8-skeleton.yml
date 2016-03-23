@@ -8,3 +8,4 @@
     - { role: common }
     - { role: php }
     - { role: drupal }
+    - { role: drush }
