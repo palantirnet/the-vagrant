@@ -9,3 +9,4 @@
     - { role: php }
     - { role: drupal }
     - { role: drush }
+    - { role: gulp }
