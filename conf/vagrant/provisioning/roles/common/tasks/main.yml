@@ -9,3 +9,7 @@
   apt: pkg={{ item }} state=installed
   with_items: system_packages
   tags: common
+
+- name: Common | Configure PALANTIR_ENVIRONMENT variable
+  lineinfile: dest=/home/vagrant/.profile state=present line='export PALANTIR_ENVIRONMENT="vagrant"'
+  tags: common
