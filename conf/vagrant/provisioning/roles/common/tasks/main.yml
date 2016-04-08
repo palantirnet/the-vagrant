@@ -9,3 +9,15 @@
   apt: pkg={{ item }} state=installed
   with_items: system_packages
   tags: common
+
+- name: Common | Configure PALANTIR_ENVIRONMENT variable
+  lineinfile: dest=/home/vagrant/.profile state=present line='export PALANTIR_ENVIRONMENT="vagrant"'
+  tags: common
+
+- name: Common | Copy gitignore
+  copy: src=roles/common/templates/gitignore dest=/home/vagrant/.gitignore
+  tags: common
+
+- name: Common | Configure global gitignore
+  command: /usr/bin/git config --global core.excludesfile ~/.gitignore
+  tags: common
