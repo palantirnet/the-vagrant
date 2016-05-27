@@ -1,5 +1,7 @@
 # "The" Vagrant
 
+_Note: If you are instantiating a project, you likely want to start with [drupal-skeleton](https://github.com/palantirnet/drupal-skeleton)._
+
 Install a vagrant environment into a project.
 
 Run from within your project:
