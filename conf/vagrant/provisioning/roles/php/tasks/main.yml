@@ -20,3 +20,8 @@
     - { file: '/etc/php5/cli/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
     - { file: '/etc/php5/cli/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
   tags: PHP
+
+- name: Composer install
+  composer:
+    command: install
+    working_dir: /var/www/{{ hostname }}
