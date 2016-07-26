@@ -21,3 +21,11 @@
 - name: Common | Configure global gitignore
   command: /usr/bin/git config --global core.excludesfile ~/.gitignore
   tags: common
+
+- name: Run user-specific provisioning.
+  command: /var/www/{{ hostname }}/conf/provision-user
+  tags: common
+
+- name: Set path to include $HOME/bin for zsh too
+  lineinfile: dest=/home/vagrant/.zshrc state=present line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin"'
+  tags: common
