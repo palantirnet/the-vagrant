@@ -40,6 +40,10 @@ Vagrant.configure(2) do |config|
 
     end
 
+    config.vm.provision "shell",
+      inline: "composer self-update && su vagrant -c 'composer install --working-dir=/var/www/#{hostname}'"
+    end
+
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "@playbook@"
 
