@@ -13,6 +13,11 @@ hostname    = "#{project}.local"
 extra_hostnames = []
 # end tunables
 
+# Install composer dependencies from the host machine.
+if ARGV[0] == 'up' or ARGV.include? '--provision'
+  system('composer install')
+end
+
 Vagrant.configure(2) do |config|
 
     config.hostmanager.enabled = true
@@ -42,9 +47,6 @@ Vagrant.configure(2) do |config|
         box.ssh.forward_agent = true
 
     end
-
-    config.vm.provision "shell",
-      inline: "composer self-update && su vagrant -c 'composer install --working-dir=/var/www/#{hostname}'"
 
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "@playbook@"
