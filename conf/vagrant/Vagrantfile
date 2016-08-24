@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-%w{ vagrant-hostmanager vagrant-auto_network }.each do |plugin|
+%w{ vagrant-hostmanager vagrant-auto_network vagrant-triggers }.each do |plugin|
     unless Vagrant.has_plugin?(plugin)
         raise "#{plugin} plugin is not installed. Please install with: vagrant plugin install #{plugin}"
     end
@@ -12,11 +12,6 @@ project     = '@projectname@'
 hostname    = "#{project}.local"
 extra_hostnames = []
 # end tunables
-
-# Install composer dependencies from the host machine.
-if ARGV[0] == 'up' or ARGV.include? '--provision'
-  system('composer install')
-end
 
 Vagrant.configure(2) do |config|
 
@@ -59,6 +54,10 @@ Vagrant.configure(2) do |config|
             "project" => project,
             "hostname" => hostname
         }
+    end
+
+    config.trigger.before [:up, :reload] do
+        run "composer install"
     end
 
 end
