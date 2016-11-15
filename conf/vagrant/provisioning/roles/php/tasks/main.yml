@@ -1,6 +1,6 @@
 ---
 - name: PHP | Adjust php.ini memory_limit
-  sudo: yes
+  become: true
   lineinfile: dest={{ item }}
               regexp='memory_limit'
               line='memory_limit = {{ php_ini_memory_limit }}'
@@ -10,7 +10,7 @@
   tags: PHP
 
 - name: PHP | Enable PHP error display
-  sudo: yes
+  become: true
   lineinfile: dest={{ item.file }}
               regexp='^{{ item.key }}'
               line='{{ item.key }} = {{ item.value }}'
