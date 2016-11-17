@@ -1,7 +1,7 @@
 ---
 
 - name: Solr | Disable Jetty Service
-  become: yes
+  become: true
   service:
     name: jetty
     state: started

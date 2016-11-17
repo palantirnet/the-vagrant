@@ -1,13 +1,13 @@
 ---
 - name: Common | Update apt cache
-  sudo: yes
+  become: true
   apt: update-cache=yes
   tags: common
 
 - name: Common | Install System Packages
-  sudo: yes
+  become: true
   apt: pkg={{ item }} state=installed
-  with_items: system_packages
+  with_items: "{{ system_packages }}"
   tags: common
 
 - name: Common | Configure PALANTIR_ENVIRONMENT variable
