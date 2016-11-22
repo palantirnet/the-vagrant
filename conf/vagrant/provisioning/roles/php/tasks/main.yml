@@ -20,3 +20,13 @@
     - { file: '/etc/php/5.6/cli/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
     - { file: '/etc/php/5.6/cli/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
   tags: PHP
+
+- name: PHP | Adjust php.ini upload_max_filesize
+  become: true
+  lineinfile: dest={{ item }}
+              regexp='^upload_max_filesize'
+              line='upload_max_filesize = {{ php_ini_upload_max_filesize }}'
+  with_items:
+    - /etc/php/5.6/apache2/php.ini
+    - /etc/php/5.6/cli/php.ini
+  tags: PHP
