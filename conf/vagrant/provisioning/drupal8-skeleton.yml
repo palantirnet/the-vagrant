@@ -4,7 +4,7 @@
     timezone: America/Chicago
     mysql_root_pass: root
     solr_enabled: false
-    system_packages: ["php5-gd"]
+    system_packages: []
   roles:
     - { role: common }
     - { role: php }
