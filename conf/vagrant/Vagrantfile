@@ -57,7 +57,7 @@ Vagrant.configure(2) do |config|
     end
 
     config.trigger.before [:up, :reload] do
-        run "composer install"
+        run "composer install --ignore-platform-reqs"
     end
 
 end
