@@ -34,3 +34,7 @@
 - name: Set path to include $HOME/bin for zsh too
   lineinfile: dest=/home/vagrant/.zshrc state=present line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin"'
   tags: common
+
+- name: Change directory into the project root on login
+  lineinfile: dest=/home/vagrant/.profile state=present line='cd /var/www/{{ hostname }}'
+  tags: common
