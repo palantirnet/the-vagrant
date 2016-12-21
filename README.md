@@ -2,22 +2,36 @@
 
 _Note: If you are instantiating a project, you likely want to start with [drupal-skeleton](https://github.com/palantirnet/drupal-skeleton)._
 
-Install a vagrant environment into a project.
+Add a customizable vagrant environment into a project.
 
-Run from within your project:
+## Adding the-vagrant with composer
+
+Before you can add `the-vagrant` to your project, you need to it as a source in your `repositories` key:
+
+```json
+    "repositories": {
+        "palantirnet/the-vagrant": {
+            "type": "vcs",
+            "url": "git@github.com:palantirnet/the-vagrant.git"
+        }
+    },
+```
+
+Then you can require the package:
+
+```sh
+$> composer require palantirnet/the-vagrant
+```
+
+## Installing the environment
+
+From within your project, run:
 
 ```
-vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml
+vendor/bin/the-vagrant-installer
 ```
 
-You may set the two properties from the command line to avoid the interactive prompt:
+This will ask you for:
 
-```
-vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml -Dprojectname=PROJECTNAME -Dcopy=n
-```
-
-And then you can remove the-vagrant with:
-
-```
-vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml remove
-```
+* A short name for your project; it will default to the name of the current directory.
+* Whether to copy the provisioning Ansible roles into your project so that you can customize it. If you say no, your vagrant environment will use the default roles from `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. You can always change your mind later -- just re-run the install command.
