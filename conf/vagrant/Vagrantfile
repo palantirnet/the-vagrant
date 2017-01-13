@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-%w{ vagrant-hostmanager vagrant-auto_network }.each do |plugin|
+%w{ vagrant-hostmanager vagrant-auto_network vagrant-triggers }.each do |plugin|
     unless Vagrant.has_plugin?(plugin)
         raise "#{plugin} plugin is not installed. Please install with: vagrant plugin install #{plugin}"
     end
@@ -54,6 +54,10 @@ Vagrant.configure(2) do |config|
             "project" => project,
             "hostname" => hostname
         }
+    end
+
+    config.trigger.before [:up, :reload] do
+        run "composer install --ignore-platform-reqs"
     end
 
 end

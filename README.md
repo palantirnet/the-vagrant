@@ -1,8 +1,18 @@
 # "The" Vagrant
 
+Add a customizable vagrant environment into a project.
+
 _Note: If you are instantiating a project, you likely want to start with [drupal-skeleton](https://github.com/palantirnet/drupal-skeleton)._
 
-Add a customizable vagrant environment into a project.
+## Dependencies
+
+This Vagrant configuration requires the following plugins:
+
+* [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager)
+* [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
+* [vagrant-triggers](https://github.com/emyl/vagrant-triggers)
+
+## Installation
 
 ## Adding the-vagrant with composer
 
