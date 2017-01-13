@@ -9,7 +9,7 @@
         }
     ],
     "bin": [
-        "bin/the-build-installer"
+        "bin/the-vagrant-installer"
     ],
     "require": {
         "phing/phing": "^2.14"
