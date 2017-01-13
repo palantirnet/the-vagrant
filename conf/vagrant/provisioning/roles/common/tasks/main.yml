@@ -31,10 +31,10 @@
   when: provision_user.stat.exists
   tags: common
 
-- name: Set path to include $HOME/bin and project vendor/bin for zsh too
-  lineinfile: dest=/home/vagrant/.zshrc state=present line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
+- name: Add the project's vendor/bin to the path
+  lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
 
-- name: Set path to include project vendor/bin
-  lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:/var/www/{{ hostname }}/vendor/bin"'
+- name: Add $HOME/bin and the project's vendor/bin to the zsh path
+  lineinfile: dest=/home/vagrant/.zshrc state=present line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
