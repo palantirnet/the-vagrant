@@ -7,7 +7,8 @@
 
     <basename property="default.projectname" file="${application.startdir}" suffix="local" />
     <property name="default.project_web_root" value="web" />
-    <property name="default.enable_solr" value="n" />
+    <property name="default.enable_solr" value="Y" />
+    <property name="default.copy_roles" value="n" />
 
 
     <!-- Target: install -->
@@ -15,7 +16,7 @@
         <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
         <propertyprompt propertyName="project_web_root" defaultValue="${default.project_web_root}" promptText="Web root within your project" promptCharacter=":" useExistingValue="true"/>
         <input propertyName="enable_solr" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_solr}" />
-        <input propertyName="copy" message="Copy Ansible roles into your project for customization" promptChar="?" validArgs="Y,n" />
+        <input propertyName="copy_roles" message="Copy Ansible roles into your project for customization " promptChar="?" validArgs="Y,n" defaultValue="${default.copy_roles}" />
 
         <property name="vagrant.installdir" value="${application.startdir}"/>
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
@@ -23,7 +24,7 @@
         <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile"/>
 
         <if>
-            <equals arg1="${copy}" arg2="Y"/>
+            <equals arg1="${copy_roles}" arg2="Y"/>
             <then>
                 <!-- Provision from copies of the playbooks from the-vagrant -->
                 <property name="vagrant.ansible.playbook" value="provisioning/${projectname}.yml"/>
