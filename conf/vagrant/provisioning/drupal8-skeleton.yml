@@ -3,6 +3,7 @@
   vars:
     timezone: America/Chicago
     mysql_root_pass: root
+    project_web_root: web
     solr_enabled: false
     system_packages: []
   roles:
