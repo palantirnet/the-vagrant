@@ -6,12 +6,14 @@
       -->
 
     <basename property="default.projectname" file="${application.startdir}" suffix="local" />
+    <property name="default.project_web_root" value="web" />
     <property name="default.enable_solr" value="n" />
 
 
     <!-- Target: install -->
     <target name="install" description="Install the vagrantfile and provisioning into your project.">
         <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
+        <propertyprompt propertyName="project_web_root" defaultValue="${default.project_web_root}" promptText="Web root within your project" promptCharacter=":" useExistingValue="true"/>
         <input propertyName="enable_solr" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_solr}" />
         <input propertyName="copy" message="Copy Ansible roles into your project for customization" promptChar="?" validArgs="Y,n" />
 
@@ -56,6 +58,7 @@
                     <token key="projectname" value="${projectname}"/>
                     <token key="playbook" value="${vagrant.ansible.playbook}"/>
                     <token key="ansible_solr_enabled" value="${ansible_solr_enabled}"/>
+                    <token key="ansible_project_web_root" value="${project_web_root}"/>
                 </replacetokens>
             </filterchain>
         </copy>

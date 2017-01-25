@@ -13,6 +13,7 @@ hostname    = "#{project}.local"
 extra_hostnames = []
 
 ansible_solr_enabled = @ansible_solr_enabled@
+ansible_project_web_root = "@ansible_project_web_root@"
 # end tunables
 
 Vagrant.configure(2) do |config|
@@ -56,6 +57,7 @@ Vagrant.configure(2) do |config|
             "project" => project,
             "hostname" => hostname,
             "solr_enabled" => ansible_solr_enabled,
+            "project_web_root" => ansible_project_web_root,
         }
     end
 
