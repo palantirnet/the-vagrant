@@ -5,11 +5,13 @@
     mysql_root_pass: root
     project_web_root: web
     solr_enabled: false
+    https_enabled: false
     system_packages: []
   roles:
     - { role: common }
     - { role: php }
     - { role: vhost }
+    - { role: https }
     - { role: solr }
     - { role: drush }
     - { role: gulp }

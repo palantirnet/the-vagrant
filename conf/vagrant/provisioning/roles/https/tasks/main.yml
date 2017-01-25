@@ -1,0 +1,50 @@
+---
+
+# @see https://www.njimedia.com/local-development-with-ssl-tls-p2/
+# @see https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04
+# @see https://raymii.org/s/snippets/OpenSSL_generate_CSR_non-interactivemd.html
+
+- name: HTTPS | Create certificate directory
+  become: True
+  file:
+    path: /etc/apache2/ssl
+    state: directory
+    mode: 0755
+  when: https_enabled == True
+  tags: https
+
+- name: HTTPS | Generate self-signed certificate
+  become: True
+  command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt -subj "/C=US/ST=Illinois/L=Evanston/O=Palantir.net, Inc./OU=DevOps/CN={{ hostname }}"
+  when: https_enabled == True
+  tags: https
+
+- name: HTTPS | Enable SSL module
+  become: True
+  command: a2enmod ssl
+  when: https_enabled == True
+  tags: https
+
+- name: HTTPS | Install Apache vhost
+  become: True
+  template: src=drupal8-skeleton-https.conf dest=/etc/apache2/sites-available/{{ hostname }}-https.conf
+  when: https_enabled == True
+  tags: https
+
+- name: HTTPS | Check whether {{ hostname }}-https vhost is enabled
+  stat: path=/etc/apache2/sites-enabled/{{ hostname }}-https.conf
+  register: drupal8_https_vhost_exists
+  when: https_enabled == True
+  tags: https
+
+- name: HTTPS | Enable {{ hostname }}-https vhost
+  become: True
+  shell: /usr/sbin/a2ensite {{ hostname }}-https
+  when: (https_enabled == True) and (drupal8_https_vhost_exists.stat.exists == False)
+  tags: https
+
+- name: HTTPS | Restart Apache
+  become: True
+  service: name=apache2 state=restarted
+  when: https_enabled == True
+  tags: https
