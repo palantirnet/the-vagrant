@@ -6,11 +6,13 @@
       -->
 
     <basename property="default.projectname" file="${application.startdir}" suffix="local" />
+    <property name="default.enable_solr" value="n" />
 
 
     <!-- Target: install -->
     <target name="install" description="Install the vagrantfile and provisioning into your project.">
         <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
+        <input propertyName="enable_solr" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_solr}" />
         <input propertyName="copy" message="Copy Ansible roles into your project for customization" promptChar="?" validArgs="Y,n" />
 
         <property name="vagrant.installdir" value="${application.startdir}"/>
@@ -34,11 +36,26 @@
             </else>
         </if>
 
+        <if>
+            <equals arg1="${enable_solr}" arg2="Y"/>
+            <then>
+                <!-- Workaround for phing <property>, which casts "true" to a
+                     boolean. We want to be able to write the string "true" to
+                     the Vagrantfile. -->
+                <exec command="echo 'true'" outputProperty="ansible_solr_enabled" />
+            </then>
+            <else>
+                <!-- Workaround for phing <property> casting. -->
+                <exec command="echo 'false'" outputProperty="ansible_solr_enabled" />
+            </else>
+        </if>
+
         <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
             <filterchain>
                 <replacetokens>
                     <token key="projectname" value="${projectname}"/>
                     <token key="playbook" value="${vagrant.ansible.playbook}"/>
+                    <token key="ansible_solr_enabled" value="${ansible_solr_enabled}"/>
                 </replacetokens>
             </filterchain>
         </copy>
