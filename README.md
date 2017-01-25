@@ -44,4 +44,6 @@ vendor/bin/the-vagrant-installer
 This will ask you for:
 
 * A short name for your project; it will default to the name of the current directory.
-* Whether to copy the provisioning Ansible roles into your project so that you can customize it. If you say no, your vagrant environment will use the default roles from `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. You can always change your mind later -- just re-run the install command.
+* The name of your web root directory within your project; defaults to `web`.
+* Whether to enable Solr; defaults to yes.
+* Whether to copy the provisioning Ansible roles into your project so that you can customize them. If you say no, your vagrant environment will use the default roles from `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. You can always change your mind later -- just re-run the install command.
