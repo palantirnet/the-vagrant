@@ -17,7 +17,7 @@
         <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
         <propertyprompt propertyName="project_web_root" defaultValue="${default.project_web_root}" promptText="Web root within your project" promptCharacter=":" useExistingValue="true"/>
         <input propertyName="enable_solr" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_solr}" />
-        <input propertyName="enable_https" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_https}" />
+        <input propertyName="enable_https" message="Enable HTTPS " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_https}" />
         <input propertyName="copy_roles" message="Copy Ansible roles into your project for customization " promptChar="?" validArgs="Y,n" defaultValue="${default.copy_roles}" />
 
         <property name="vagrant.installdir" value="${application.startdir}"/>
