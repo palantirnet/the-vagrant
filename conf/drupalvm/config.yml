@@ -1,0 +1,11 @@
+vagrant_machine_name: "@projectname@"
+vagrant_hostname: "{{ vagrant_machine_name }}.drupalvm"
+vagrant_ip: 0.0.0.0
+
+# @see http://docs.drupalvm.com/en/latest/deployment/local-codebase/
+build_makefile: false
+build_composer: false
+build_composer_project: false
+
+install_site: false
+drupal_core_path: /var/www/drupalvm/web

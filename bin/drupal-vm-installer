@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Installer for the geerlingguy/drupal-vm.
+
+# Relative path to this script.
+SCRIPT=$(readlink "$0")
+
+# Absolute path to this script's parent directory.
+SCRIPTPATH=$(cd `dirname $0` && cd `dirname $SCRIPT` && pwd)
+
+REPOPATH=$(cd `dirname $SCRIPTPATH` && cd ../../../ && pwd)
+
+if [ "$REPOPATH" = `pwd` ]; then
+  default_projectname=${PWD##*/}
+  read -p "Enter a short name for your project [${default_projectname}]: " projectname
+  if [ "${projectname}" == "" ]; then
+    projectname="${default_projectname}"
+  fi
+
+  mkdir -p conf/vm
+  cp $SCRIPTPATH/../conf/drupalvm/config.yml conf/vm/config.yml
+  sed -i "s/@projectname@/${projectname}/g" conf/vm/config.yml
+  cp $SCRIPTPATH/../conf/drupalvm/Vagrantfile Vagrantfile
+  composer require --dev geerlingguy/drupal-vm:^4.2
+else
+  echo "Please run this command from your project root."
+fi
