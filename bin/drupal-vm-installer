@@ -17,9 +17,9 @@ if [ "$REPOPATH" = `pwd` ]; then
     projectname="${default_projectname}"
   fi
 
-  mkdir -p conf/vm
-  cp $SCRIPTPATH/../conf/drupalvm/config.yml conf/vm/config.yml
-  sed -i "s/@projectname@/${projectname}/g" conf/vm/config.yml
+  mkdir -p conf/drupalvm
+  cp $SCRIPTPATH/../conf/drupalvm/config.yml conf/drupalvm/config.yml
+  sed -i "s/@projectname@/${projectname}/g" conf/drupalvm/config.yml
   cp $SCRIPTPATH/../conf/drupalvm/Vagrantfile Vagrantfile
   composer require --dev geerlingguy/drupal-vm:^4.2
 else
