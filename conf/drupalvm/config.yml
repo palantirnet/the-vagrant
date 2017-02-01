@@ -9,3 +9,28 @@ build_composer_project: false
 
 install_site: false
 drupal_core_path: /var/www/drupalvm/web
+
+installed_extras:
+  - adminer
+  # - blackfire
+  - drupalconsole
+  - drush
+  # - elasticsearch
+  - java
+  - mailhog
+  - memcached
+  # - newrelic
+  # - nodejs
+  - pimpmylog
+  # - redis
+  # - ruby
+  # - selenium
+  - solr
+  - varnish
+  # - xdebug
+  # - xhprof
+
+# Acquia Solr version
+solr_version: "4.5.1"
+post_provision_scripts:
+  - "{{ config_dir }}/../../vendor/geerlingguy/drupal-vm/examples/scripts/configure-solr.sh"
