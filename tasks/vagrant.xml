@@ -8,6 +8,7 @@
     <basename property="default.projectname" file="${application.startdir}" suffix="local" />
     <property name="default.project_web_root" value="web" />
     <property name="default.enable_solr" value="Y" />
+    <property name="default.enable_https" value="n" />
     <property name="default.copy_roles" value="n" />
 
 
@@ -16,6 +17,7 @@
         <propertyprompt propertyName="projectname" defaultValue="${default.projectname}" promptText="Enter a short name for your project" promptCharacter=":" useExistingValue="true"/>
         <propertyprompt propertyName="project_web_root" defaultValue="${default.project_web_root}" promptText="Web root within your project" promptCharacter=":" useExistingValue="true"/>
         <input propertyName="enable_solr" message="Enable Solr " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_solr}" />
+        <input propertyName="enable_https" message="Enable HTTPS " promptChar="?" validArgs="Y,n" defaultValue="${default.enable_https}" />
         <input propertyName="copy_roles" message="Copy Ansible roles into your project for customization " promptChar="?" validArgs="Y,n" defaultValue="${default.copy_roles}" />
 
         <property name="vagrant.installdir" value="${application.startdir}"/>
@@ -53,12 +55,27 @@
             </else>
         </if>
 
+        <if>
+            <equals arg1="${enable_https}" arg2="Y"/>
+            <then>
+                <!-- Workaround for phing <property>, which casts "true" to a
+                     boolean. We want to be able to write the string "true" to
+                     the Vagrantfile. -->
+                <exec command="echo 'true'" outputProperty="ansible_https_enabled" />
+            </then>
+            <else>
+                <!-- Workaround for phing <property> casting. -->
+                <exec command="echo 'false'" outputProperty="ansible_https_enabled" />
+            </else>
+        </if>
+
         <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
             <filterchain>
                 <replacetokens>
                     <token key="projectname" value="${projectname}"/>
                     <token key="playbook" value="${vagrant.ansible.playbook}"/>
                     <token key="ansible_solr_enabled" value="${ansible_solr_enabled}"/>
+                    <token key="ansible_https_enabled" value="${ansible_https_enabled}"/>
                     <token key="ansible_project_web_root" value="${project_web_root}"/>
                 </replacetokens>
             </filterchain>
