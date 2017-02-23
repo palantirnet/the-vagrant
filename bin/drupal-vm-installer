@@ -2,25 +2,25 @@
 #
 # Installer for the geerlingguy/drupal-vm.
 
-# Relative path to this script.
-SCRIPT=$(readlink "$0")
+# First, figure out the absolute paths for ALL the things.
+SCRIPTPATH=$(cd `dirname $0` && pwd -P)
 
-# Absolute path to this script's parent directory.
-SCRIPTPATH=$(cd `dirname $0` && cd `dirname $SCRIPT` && pwd)
+# Project root and config destination.
+PROJECT_ROOT=$(cd "$SCRIPTPATH/../../" && pwd -P)
+CONFIG_TEMPLATES="$PROJECT_ROOT/vendor/palantirnet/the-vagrant/conf/vagrant/drupalvm"
+CONFIG_DESTINATION="$PROJECT_ROOT/conf/vagrant"
 
-REPOPATH=$(cd `dirname $SCRIPTPATH` && cd ../../../ && pwd)
-
-if [ "$REPOPATH" = `pwd` ]; then
+# Make sure the script is being run from the project root.
+if [ "$(pwd)" == "$PROJECT_ROOT" ]; then
   default_projectname=${PWD##*/}
   read -p "Enter a short name for your project [${default_projectname}]: " projectname
   if [ "${projectname}" == "" ]; then
     projectname="${default_projectname}"
   fi
 
-  mkdir -p conf/drupalvm
-  cp $SCRIPTPATH/../conf/drupalvm/config.yml conf/drupalvm/config.yml
-  sed -i "s/@projectname@/${projectname}/g" conf/drupalvm/config.yml
-  cp $SCRIPTPATH/../conf/drupalvm/Vagrantfile Vagrantfile
+  mkdir -p "$CONFIG_DESTINATION"
+  sed "s/@projectname@/${projectname}/g" "$CONFIG_TEMPLATES/config.yml" > "$CONFIG_DESTINATION/config.yml"
+  cp "$CONFIG_TEMPLATES/Vagrantfile" Vagrantfile
   composer require --dev geerlingguy/drupal-vm:^4.2
 else
   echo "Please run this command from your project root."
