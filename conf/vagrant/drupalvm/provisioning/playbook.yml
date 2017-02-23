@@ -23,7 +23,7 @@
     register: provision_user
 
   - name: Run user-specific provisioning.
-    command: /var/www/{{ hostname }}/conf/provision-user
+    command: /var/www/{{ hostname }}/conf/vagrant/scripts/provision-user
     when: provision_user.stat.exists
     tags: common
 
