@@ -1,0 +1,13 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = '2' unless defined? VAGRANTFILE_API_VERSION
+
+config.vm.provision 'ansible' do |ansible|
+  ansible.playbook = "#{host_config_dir}/provisioning/playbook.yml"
+
+  ansible.extra_vars = {
+    "project" => vconfig['vagrant_machine_name'],
+    "hostname" => vconfig['vagrant_hostname']
+  }
+
+end

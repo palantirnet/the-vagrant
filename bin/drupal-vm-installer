@@ -18,9 +18,13 @@ if [ "$(pwd)" == "$PROJECT_ROOT" ]; then
     projectname="${default_projectname}"
   fi
 
+  # Copy Drupal-VM configuration and provisioning into the vm.
   mkdir -p "$CONFIG_DESTINATION"
   sed "s/@projectname@/${projectname}/g" "$CONFIG_TEMPLATES/config.yml" > "$CONFIG_DESTINATION/config.yml"
   cp "$CONFIG_TEMPLATES/Vagrantfile" Vagrantfile
+  cp "$CONFIG_TEMPLATES/Vagrantfile.local" "$CONFIG_DESTINATION/"
+  cp -r "$CONFIG_TEMPLATES/provisioning/" "$CONFIG_DESTINATION/provisioning"
+
   composer require --dev geerlingguy/drupal-vm:^4.2
 else
   echo "Please run this command from your project root."
