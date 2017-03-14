@@ -75,3 +75,6 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
 3. This will create a new `provisioning` directory in your project that contains the Ansible playbook and roles. Your `Vagrantfile` will refer to this playbook instead of the one in the `vendor` directory.
 4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
 5. Add or update the roles and playbook as necessary.
+
+----
+Copyright 2016, 2017 Palantir.net, Inc.
