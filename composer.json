@@ -1,6 +1,6 @@
 {
     "name": "palantirnet/the-vagrant",
-    "description": "Install a vagrant environment into a project.",
+    "description": "Install a Vagrant environment into a Drupal project.",
     "license": "proprietary",
     "authors": [
         {
