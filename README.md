@@ -21,19 +21,6 @@ To use the-vagrant on a project, you will need to:
 
 ### Require the `palantirnet/the-vagrant` package with composer
 
-Before you can add `the-vagrant` to your project, you need to it as a source in the `repositories` key of your `composer.json`:
-
-```json
-    "repositories": {
-        "palantirnet/the-vagrant": {
-            "type": "vcs",
-            "url": "git@github.com:palantirnet/the-vagrant.git"
-        }
-    },
-```
-
-Then you can require the package:
-
 ```sh
 $> composer require palantirnet/the-vagrant
 ```
