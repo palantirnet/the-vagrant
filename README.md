@@ -63,5 +63,9 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
 4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
 5. Add or update the roles and playbook as necessary.
 
+# Default Software
+
+`the-vagrant` uses Vagrant boxes built with [palantirnet/devkit](https://github.com/palantirnet/devkit). You can find more information about the specifics of accessing default software like MySQL, Solr, and Mailhog in the [Drupalbox README](https://github.com/palantirnet/devkit/blob/develop/drupalbox/README.md).
+
 ----
 Copyright 2016, 2017 Palantir.net, Inc.
