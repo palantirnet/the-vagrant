@@ -1,0 +1,4 @@
+---
+- name: Main | Example project-specific role
+  debug:
+    msg: "{{ example_var }}"
