@@ -35,7 +35,7 @@
         <!-- Source locations -->
         <property name="vagrant.installdir" value="${application.startdir}"/>
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
-        <property name="vagrant.ansible_template.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning_template"/>
+        <property name="vagrant.ansible_template.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning-template"/>
         <property name="vagrant.vagrantfile.source" value="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile"/>
         <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile"/>
 
@@ -64,7 +64,7 @@
                 <copy todir="${vagrant.installdir}/provisioning">
                     <fileset dir="${vagrant.ansible_template.source}"/>
                 </copy>
-                <move file="${vagrant.installdir}/provisioning_template/project.yml" tofile="${vagrant.installdir}/provisioning/${projectname}.yml"/>
+                <move file="${vagrant.installdir}/provisioning/project.yml" tofile="${vagrant.installdir}/provisioning/${projectname}.yml"/>
             </then>
             <else>
                 <property name="ansible_custom_playbook" value="" />
