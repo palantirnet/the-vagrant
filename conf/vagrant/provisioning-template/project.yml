@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars:
+    example_var: "This is a stub project-specific playbook."
+  roles:
+    - { role: main }
