@@ -9,7 +9,8 @@
         }
     ],
     "bin": [
-        "bin/the-vagrant-installer"
+        "bin/the-vagrant-installer",
+        "bin/the-vagrant-installer-drupalvm"
     ],
     "require": {
         "phing/phing": "^2.14"
