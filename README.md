@@ -33,7 +33,8 @@ $> composer require palantirnet/the-vagrant
   * The project web root
   * Enable Solr
   * Enable HTTPS
-  * Make a project-specific copy of the Ansible roles
+  * Make a project-specific copy of the Ansible roles and a copy of the default playbook
+  * OR make a project-specific Ansible playbook to be run _in addition_ to the default playbook
 3. Check in and commit the new Vagrantfile to git
 
 You can re-run the install script later if you need to change your configuration.
@@ -49,14 +50,29 @@ Several things can be configured during the interactive installation:
 
 A few more things can be customized directly in your `Vagrantfile`:
 
-* Extra hostnames for this VM (hello, multisite)
+* Extra hostnames for this VM (use this for multisite)
 * Extra apt packages to install
 * The PHP timezone
 
-By default, the-vagrant references ansible roles from the package at `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. If your project needs configuration beyond what is provided via in the `Vagrantfile`, you can:
+By default, the-vagrant references ansible roles from the package at `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. If your project needs configuration beyond what is provided via in the `Vagrantfile`, you can re-run the install script and update the provisioning.
+
+### Run a custom playbook in addition to the defaults
 
 1. Re-run the install script: `vendor/bin/the-vagrant-installer`
-2. When are prompted to copy the Ansible roles, reply `Y`:
+2. When you are prompted to copy the Ansible roles, reply `n`
+3. When you are prompted to add an additional Ansible playbook to your project, reply `Y`
+
+  > Copy Ansible roles into your project for customization (Y,n) [n]? n
+  >
+  > OR add an additional Ansible playbook to your project  (Y,n) [n]? Y
+3. This will create a new `provisioning` directory in your project that contains a simple Ansible playbook and example role. Your `Vagrantfile` will refer to this playbook in addition to the one in the `vendor` directory.
+4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
+5. Add or update the roles and playbook as necessary.
+
+### 100% custom provisioning
+
+1. Re-run the install script: `vendor/bin/the-vagrant-installer`
+2. When you are prompted to copy the Ansible roles, reply `Y`:
 
   > Copy Ansible roles into your project for customization (Y,n) [n]?
 3. This will create a new `provisioning` directory in your project that contains the Ansible playbook and roles. Your `Vagrantfile` will refer to this playbook instead of the one in the `vendor` directory.
