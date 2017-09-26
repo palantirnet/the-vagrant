@@ -67,8 +67,8 @@ Vagrant.configure(2) do |config|
         }
     end
 
-    config.vm.provision "@projectname@-provision", type: "ansible" do |ansible|
-        if (defined?(ansible_custom_playbook) && !ansible_custom_playbook.empty?)
+    if (defined?(ansible_custom_playbook) && !ansible_custom_playbook.empty?)
+        config.vm.provision "@projectname@-provision", type: "ansible" do |ansible|
             ansible.playbook = ansible_custom_playbook
         end
     end
