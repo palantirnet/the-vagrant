@@ -5,8 +5,8 @@
               regexp='memory_limit'
               line='memory_limit = {{ item.value }}'
   with_items:
-    - ( file: '/etc/php/5.6/apache2/php.ini', value: "{{ php_ini_memory_limit }}" }
-    - ( file: '/etc/php/5.6/cli/php.ini', value: '-1' }
+    - { file: '/etc/php/5.6/apache2/php.ini', value: "{{ php_ini_memory_limit }}" }
+    - { file: '/etc/php/5.6/cli/php.ini', value: '-1' }
   tags: PHP
 
 - name: PHP | Enable PHP error display
