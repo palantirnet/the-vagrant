@@ -5,8 +5,8 @@
               regexp='memory_limit'
               line='memory_limit = {{ item.value }}'
   with_items:
-    - { file: '/etc/php/5.6/apache2/php.ini', value: "{{ php_ini_memory_limit }}" }
-    - { file: '/etc/php/5.6/cli/php.ini', value: '-1' }
+    - { file: '/etc/php/7.0/fpm/php.ini', value: "{{ php_ini_memory_limit }}" }
+    - { file: '/etc/php/7.0/cli/php.ini', value: '-1' }
   tags: PHP
 
 - name: PHP | Enable PHP error display
@@ -15,10 +15,10 @@
               regexp='^{{ item.key }}'
               line='{{ item.key }} = {{ item.value }}'
   with_items:
-    - { file: '/etc/php/5.6/apache2/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
-    - { file: '/etc/php/5.6/apache2/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
-    - { file: '/etc/php/5.6/cli/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
-    - { file: '/etc/php/5.6/cli/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
+    - { file: '/etc/php/7.0/fpm/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
+    - { file: '/etc/php/7.0/fpm/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
+    - { file: '/etc/php/7.0/cli/php.ini', key: 'error_reporting', value: "{{ php_ini_error_reporting }}" }
+    - { file: '/etc/php/7.0/cli/php.ini', key: 'display_errors', value: "{{ php_ini_display_errors }}" }
   tags: PHP
 
 - name: PHP | Adjust php.ini upload_max_filesize
@@ -27,6 +27,6 @@
               regexp='^upload_max_filesize'
               line='upload_max_filesize = {{ php_ini_upload_max_filesize }}'
   with_items:
-    - /etc/php/5.6/apache2/php.ini
-    - /etc/php/5.6/cli/php.ini
+    - /etc/php/7.0/fpm/php.ini
+    - /etc/php/7.0/cli/php.ini
   tags: PHP

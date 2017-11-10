@@ -1,9 +1,9 @@
 ---
 
-- name: Solr | Disable Jetty Service
+- name: Solr | Start the Jetty9 service
   become: true
   service:
-    name: jetty
+    name: jetty9
     state: started
     enabled: yes
   when: solr_enabled == True
