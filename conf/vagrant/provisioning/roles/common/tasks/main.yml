@@ -36,7 +36,7 @@
   tags: common
 
 - name: Add $HOME/bin and the project's vendor/bin to the zsh path
-  lineinfile: dest=/home/vagrant/.zshrc state=present line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
+  lineinfile: dest=/home/vagrant/.zshrc state=present create=yes line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
 
 - name: Change directory into the project root on login
