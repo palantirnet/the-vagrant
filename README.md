@@ -12,6 +12,15 @@ This Vagrant configuration requires the following plugins:
 * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
 * [vagrant-triggers](https://github.com/emyl/vagrant-triggers)
 
+This setup will use a version of the [palantir/drupalbox](https://app.vagrantup.com/palantir/boxes/drupalbox) Vagrant box:
+
+| the-vagrant version | palantir/drupalbox version |
+|---|---|
+| ^2.0 | >= 1.1, < 2.0 |
+| >= 0.6.0, < 2.0 | >= 0.2.4, < 1.0 |
+
+\* Note that version 1.2.0 of the palantir/drupalbox VM requires updating to version 2.0.1 of palantirnet/the-vagrant.
+
 ## Installation
 
 To use the-vagrant on a project, you will need to:
