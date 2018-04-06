@@ -16,8 +16,9 @@ This setup will use a version of the [palantir/drupalbox](https://app.vagrantup.
 
 | the-vagrant version | palantir/drupalbox version |
 |---|---|
-| ^2.0 | >= 1.1, < 2.0 |
-| >= 0.6.0, < 2.0 | >= 0.2.4, < 1.0 |
+| 2.0.1 | 1.1.1, 1.2.0 |
+| 2.0.0 | 1.1.0, 1.1.1 |
+| 0.6.0 - 1.1.1 | >= 0.2.4, < 1.0 |
 
 \* Note that version 1.2.0 of the palantir/drupalbox VM requires updating to version 2.0.1 of palantirnet/the-vagrant.
 
