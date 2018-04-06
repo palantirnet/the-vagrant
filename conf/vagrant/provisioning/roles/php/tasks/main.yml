@@ -53,3 +53,12 @@
     line: "upload_max_filesize = {{ php_ini_upload_max_filesize }}"
   with_items: "{{ installed_configs.stdout_lines }}"
   tags: PHP
+
+- name: PHP | Adjust php.ini post_max_size
+  become: true
+  lineinfile:
+    dest: "/etc/php/{{ php_version.stdout }}/{{ item }}/php.ini"
+    regexp: ^post_max_size
+    line: "post_max_size = {{ php_ini_post_max_size }}"
+  with_items: "{{ installed_configs.stdout_lines }}"
+  tags: PHP
