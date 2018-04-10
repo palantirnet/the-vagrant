@@ -8,9 +8,6 @@
   shell: "ls /etc/php/{{ php_version.stdout }} | grep -E 'apache|cli|fpm'"
   register: installed_configs
 
-- debug:
-    msg: "{{ installed_configs }}"
-
 - name: PHP | Adjust php.ini memory_limit
   become: true
   lineinfile:
