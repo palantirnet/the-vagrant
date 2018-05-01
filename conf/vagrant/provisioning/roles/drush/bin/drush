@@ -21,6 +21,8 @@ fi
 
 if [ $REPO ] && [ -e $REPO/conf/drushrc.php ]; then
   DRUSH_FLAGS="-c $REPO/conf/drushrc.php"
+elif [ $REPO ] && [ -e $REPO/drush/drushrc.php ]; then
+  DRUSH_FLAGS="-c $REPO/drush/drushrc.php"
 fi
 
 $THE_DRUSH $DRUSH_FLAGS $@
