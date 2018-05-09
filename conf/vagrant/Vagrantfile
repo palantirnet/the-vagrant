@@ -13,7 +13,6 @@ hostname    = "#{project}.local"
 extra_hostnames = []
 
 ansible_solr_enabled = @ansible_solr_enabled@
-ansible_solr_enabled = false
 ansible_https_enabled = @ansible_https_enabled@
 ansible_project_web_root = "@ansible_project_web_root@"
 ansible_timezone = "America/Chicago"
