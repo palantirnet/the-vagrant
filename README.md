@@ -14,11 +14,12 @@ This Vagrant configuration requires the following plugins:
 
 This setup will use a version of the [palantir/drupalbox](https://app.vagrantup.com/palantir/boxes/drupalbox) Vagrant box:
 
-| the-vagrant version | palantir/drupalbox version |
-|---|---|
-| 2.0.1 | 1.1.1, 1.2.0 |
-| 2.0.0 | 1.1.0, 1.1.1 |
-| 0.6.0 - 1.1.1 | >= 0.2.4, < 1.0 |
+| the-vagrant version | palantir/drupalbox version | Vagrant provider |
+|---|---|---|
+| 2.1.0 | 1.1.1, 1.2.0 | virtualbox |
+| 2.0.1 | 1.1.1, 1.2.0 | virtualbox |
+| 2.0.0 | 1.1.0, 1.1.1 | virtualbox, vmware_desktop (drupalbox v1.1.0 only) |
+| 0.6.0 - 1.1.1 | >= 0.2.4, < 1.0 | virtualbox, vmware_desktop |
 
 \* Note that version 1.2.0 of the palantir/drupalbox VM requires updating to version 2.0.1 of palantirnet/the-vagrant.
 
