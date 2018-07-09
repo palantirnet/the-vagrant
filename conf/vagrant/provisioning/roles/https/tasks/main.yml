@@ -13,9 +13,15 @@
   when: https_enabled == True
   tags: https
 
+- name: Add config for self-signed certs
+  become: True
+  template: src=san.cnf dest=/etc/apache2/ssl/san.cnf
+  when: https_enabled == True
+  tags: https
+  
 - name: Generate self-signed certificate
   become: True
-  command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt -subj "/C=US/ST=Illinois/L=Evanston/O=Palantir.net, Inc./OU=DevOps/CN={{ hostname }}"
+  command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt -subj "/C=US/ST=Illinois/L=Evanston/O=Palantir.net, Inc./OU=DevOps/CN={{ hostname }}"  -config /etc/apache2/ssl/san.cnf
   when: https_enabled == True
   tags: https
 
