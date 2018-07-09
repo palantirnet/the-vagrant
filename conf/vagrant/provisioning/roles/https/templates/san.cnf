@@ -1,0 +1,17 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions     = v3_req
+x509_extensions    = v3_req
+
+[req_distinguished_name]
+commonName       = {{ hostname }}
+organizationName = Palantir.net, Inc.
+localityName     = Evanston
+countryName      = US
+
+[v3_req]
+# The extentions to add to a self-signed cert
+subjectKeyIdentifier = hash
+basicConstraints     = critical,CA:false
+subjectAltName       = DNS:{{ hostname }},DNS:www.{{ hostname }}
+keyUsage             = critical,digitalSignature,keyEncipherment
