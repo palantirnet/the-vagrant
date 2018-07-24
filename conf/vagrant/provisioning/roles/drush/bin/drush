@@ -25,4 +25,4 @@ elif [ $REPO ] && [ -e $REPO/drush/drushrc.php ]; then
   DRUSH_FLAGS="-c $REPO/drush/drushrc.php"
 fi
 
-$THE_DRUSH $DRUSH_FLAGS $@
+$THE_DRUSH $DRUSH_FLAGS "$@"
