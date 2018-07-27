@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+Vagrant.require_version ">= 2.1.0"
+
 %w{ vagrant-hostmanager vagrant-auto_network vagrant-triggers }.each do |plugin|
     unless Vagrant.has_plugin?(plugin)
         raise "#{plugin} plugin is not installed. Please install with: vagrant plugin install #{plugin}"
