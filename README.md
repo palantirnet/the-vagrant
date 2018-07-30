@@ -10,13 +10,13 @@ This Vagrant configuration requires the following plugins:
 
 * [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager)
 * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
-* [vagrant-triggers](https://github.com/emyl/vagrant-triggers)
 
 This setup will use a version of the [palantir/drupalbox](https://app.vagrantup.com/palantir/boxes/drupalbox) Vagrant box:
 
-| the-vagrant version | palantir/drupalbox version | Vagrant provider |
-|---|---|---|
-| 2.1.0 | 1.1.1, 1.2.0 | virtualbox |
+| the-vagrant version | palantir/drupalbox version | Vagrant provider | Vagrant version |
+|---|---|---|---|
+| 2.2.0 | >= 1.2.0, < 2.0 | virtualbox | >= 2.1.0 |
+| 2.1.0 | >= 1.2.0, < 2.0 | virtualbox |
 | 2.0.1 | 1.1.1, 1.2.0 | virtualbox |
 | 2.0.0 | 1.1.0, 1.1.1 | virtualbox, vmware_desktop (drupalbox v1.1.0 only) |
 | 0.6.0 - 1.1.1 | >= 0.2.4, < 1.0 | virtualbox, vmware_desktop |
