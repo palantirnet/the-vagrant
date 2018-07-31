@@ -16,4 +16,5 @@ basicConstraints     = critical,CA:false
 subjectAltName       = DNS:{{ hostname }},DNS:www.{{ hostname }}{% for host in extra_hostnames  %}
 ,DNS:{{ host }}
 {% endfor %}
+
 keyUsage             = critical,digitalSignature,keyEncipherment
