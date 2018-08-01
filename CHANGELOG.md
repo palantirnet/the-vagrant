@@ -1,6 +1,6 @@
 # Change Log
 
-## 2.2.0-alpha - July 30th, 2018
+## 2.2.0 - August 1, 2018
 
 ### Fixed
 
