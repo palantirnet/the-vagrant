@@ -90,6 +90,57 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
 4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
 5. Add or update the roles and playbook as necessary.
 
+### Tips for developing Ansible playbooks and roles
+
+* Check the syntax of a playbook:
+
+  ```
+    ansible-playbook --syntax-check provisioning/my_playbook.yml
+  ```
+* Run a playbook against a Vagrant box without re-provisioning the box:
+
+  ```
+    ansible-playbook -u vagrant -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory provisioning/my_playbook.yml
+  ```
+* Debug step outputs and variables within a role using the [debug module](https://docs.ansible.com/ansible/devel/modules/debug_module.html):
+
+  ```
+    - name: Some command
+      command: ls
+      register: my_command_output
+    - name: Some debugging
+      debug:
+        var: my_command_output
+  ```
+* Add third-party roles from Ansible Galaxy:
+  1. Create a [requirements.yml file](https://docs.ansible.com/ansible/devel/reference_appendices/galaxy.html?highlight=requirements%20yml#installing-multiple-roles-from-a-file) at `provisioning/requirements.yml`
+  2. Configure the `ansible.galaxy_role_file` and `ansible.galaxy_roles_path` properties for the custom playbook in your `Vagrantfile`:
+
+  ```
+    if (defined?(ansible_custom_playbook) && !ansible_custom_playbook.empty?)
+        config.vm.provision "myproject-provision", type: "ansible" do |ansible|
+            ansible.playbook = ansible_custom_playbook
+            ansible.galaxy_role_file = "provisioning/requirements.yml"
+            ansible.galaxy_roles_path = "provisioning/roles/"
+        end
+    end
+  ```
+* In the Vagrantfile, pass additional configuration through to the Ansible provisioners. A great use case for this is setting the `php_ini_memory_limit` when using the default `palantirnet/the-vagrant` provisioning:
+
+  ```
+    ansible.extra_vars = {
+      "project" => project,
+      "hostname" => hostname,
+      "extra_hostnames" => extra_hostnames,
+      "solr_enabled" => ansible_solr_enabled,
+      "https_enabled" => ansible_https_enabled,
+      "project_web_root" => ansible_project_web_root,
+      "timezone" => ansible_timezone,
+      "system_packages" => ansible_system_packages,
+      "php_ini_memory_limit" => "512M",
+    }
+  ```
+
 # Default Software
 
 `the-vagrant` uses Vagrant boxes built with [palantirnet/devkit](https://github.com/palantirnet/devkit). You can find more information about the specifics of accessing default software like MySQL, Solr, and Mailhog in the [Drupalbox README](https://github.com/palantirnet/devkit/blob/develop/drupalbox/README.md).
