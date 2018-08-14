@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1 - August 14, 2018
+
+### Fixed
+
+* Fixed a where https provisioning failed for Vagrantfiles with multiple `extra_hostnames`
+
 ## 2.2.0 - August 1, 2018
 
 ### Fixed
