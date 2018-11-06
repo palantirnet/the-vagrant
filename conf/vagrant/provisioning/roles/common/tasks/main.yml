@@ -18,14 +18,14 @@
   git_config:
     name: user.name
     scope: global
-    register: git_author_name
+  register: git_author_name
   tags: common
 
 - name: Common | Get user.email from host's gitconfig
   git_config:
     name: user.email
     scope: global
-    register: git_author_email
+  register: git_author_email
   tags: common
   
 - name: Common | Copy gitconfig from template

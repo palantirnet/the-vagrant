@@ -1,4 +1,4 @@
 # This is Git's per-user configuration file.
 [user]
-	name = {{ git_author_name }}
-	email = {{ git_author_email }}
+	name = {{ git_author_name.config_value }}
+	email = {{ git_author_email.config_value }}
