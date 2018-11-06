@@ -40,7 +40,6 @@
 - name: Common | Configure global gitignore
   command: /usr/bin/git config --global core.excludesfile ~/.gitignore
   tags: common
-  
 
 - name: Check for user-specific provisioning script
   stat: path=/var/www/{{ hostname }}/conf/provision-user
