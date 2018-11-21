@@ -13,7 +13,11 @@
 - name: Common | Configure PALANTIR_ENVIRONMENT variable
   lineinfile: dest=/home/vagrant/.profile state=present line='export PALANTIR_ENVIRONMENT="vagrant"'
   tags: common
-  
+
+- name: Common | Copy user's gitconfig from host
+  copy: src=~/.gitconfig dest=/home/vagrant/.gitconfig
+  tags: common
+
 - name: Common | Get user.name from host's gitconfig
   git_config:
     name: user.name
