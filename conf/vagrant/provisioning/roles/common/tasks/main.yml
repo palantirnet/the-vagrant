@@ -14,6 +14,29 @@
   lineinfile: dest=/home/vagrant/.profile state=present line='export PALANTIR_ENVIRONMENT="vagrant"'
   tags: common
 
+- name: Common | Copy user's gitconfig from host
+  copy: src=~/.gitconfig dest=/home/vagrant/.gitconfig
+  tags: common
+
+- name: Common | Get user.name from host's gitconfig
+  git_config:
+    name: user.name
+    scope: global
+  register: git_author_name
+  tags: common
+
+- name: Common | Get user.email from host's gitconfig
+  git_config:
+    name: user.email
+    scope: global
+  register: git_author_email
+  tags: common
+  
+- name: Common | Copy gitconfig from template
+  template:
+    src: gitconfig
+    dest: /home/vagrant/.gitconfig
+
 - name: Common | Copy gitignore
   copy: src=roles/common/templates/gitignore dest=/home/vagrant/.gitignore
   tags: common
