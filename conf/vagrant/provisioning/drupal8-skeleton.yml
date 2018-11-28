@@ -15,3 +15,7 @@
     - { role: solr }
     - { role: drush }
     - { role: gulp }
+    - { role: leanbit.nvm,
+        nvm_user: "vagrant",
+        become: true,
+      }
