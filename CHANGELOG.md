@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.2.2 - November 28, 2018
+
+### Fixed
+
+* Fixed an issue with generating the self-signed certificate for HTTPS support when there are `extra_hostnames` in the Vagrantfile
+
+### Added
+
+* On provisioning, the git user name and email are now copied from the host into the `.gitconfig` on the VM
+
+### Updating from 2.2.1 or 2.2.0
+
+* This update does **not** require destroying your current vagrant box.
+* After updating a project to 2.2.2, run `vagrant reload --provision`
+
+
 ## 2.2.1 - August 14, 2018
 
 ### Fixed
