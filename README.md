@@ -92,6 +92,7 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
 
 ### Tips for developing Ansible playbooks and roles
 
+* The Ansible documentation has an [Intro to Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
 * Check the syntax of a playbook:
 
   ```
