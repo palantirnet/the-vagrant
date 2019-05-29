@@ -1,9 +1,0 @@
----
-
-- name: Drupal Check | Download drupal check
-  command: curl -O -L https://github.com/mglaman/drupal-check/releases/latest/download/drupal-check.phar
-  tags: drupal-check
-
-- name: Druupal Check | Copy Drupal Check
-  copy: src=drupal-check.phar dest=/home/vagrant mode=u+rwx
-  tags: drupal-check
