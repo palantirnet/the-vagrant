@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.4.0 - October 18, 2019
+
+### Added
+
+* Installed [drupal-check](https://github.com/mglaman/drupal-check) globally on the VM to prepare for Drupal 9 (#63)
+
+### Changed
+
+* Disabled audio on the VM to avoid a performance bug (#60)
+
 ## 2.3.0 - November 28, 2018
 
 ### Changed
