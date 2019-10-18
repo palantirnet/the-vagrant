@@ -10,6 +10,14 @@
 
 * Disabled audio on the VM to avoid a performance bug (#60)
 
+### Updating to 2.4.0
+
+This version includes changes to the `Vagrantfile` template. To get these changes, either re-run the-vagrant's installer with `vendor/bin/the-vagrant-installer`, OR manually apply the changes from the [diff from #60](https://github.com/palantirnet/the-vagrant/pull/60/files).
+
+You will also need to re-run the provisioning with `vagrant reload --provision`; this will add `drupal-check` to your existing box.
+
+This update does **not** require destroying your current vagrant box.
+
 ## 2.3.0 - November 28, 2018
 
 ### Changed
