@@ -10,7 +10,7 @@
 
 * Disabled audio on the VM to avoid a performance bug (#60)
 
-### Updating to 2.4.0
+### Updating from 2.3.0
 
 This version includes changes to the `Vagrantfile` template. To get these changes, either re-run the-vagrant's installer with `vendor/bin/the-vagrant-installer`, OR manually apply the changes from the [diff from #60](https://github.com/palantirnet/the-vagrant/pull/60/files).
 
@@ -28,7 +28,7 @@ This update does **not** require destroying your current vagrant box.
 
 * Provisioning now installs [nvm](https://github.com/creationix/nvm), using the [leanbit.nvm](https://github.com/leanbit/ansible-nvm) role from Ansible Galaxy
 
-### Updating to 2.3.0
+### Updating from 2.2
 
 1. Updating to this version requires updates to your project's `Vagrantfile`:
   1. Re-run the-vagrant's installer with `vendor/bin/the-vagrant-installer` to get the latest version; this will overwrite any customizations you've made.
