@@ -16,7 +16,7 @@
     - { role: drush }
     - { role: drupal-check }
     - { role: gulp }
-    - { role: leanbit.nvm,
+    - { role: elnebuloso.nvm,
         nvm_user: "vagrant",
         become: true,
       }
