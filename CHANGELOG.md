@@ -1,5 +1,11 @@
 # Change Log
 
+## Unreleased
+
+### Changed
+
+* Switched the Ansible Galaxy role used to install nvm, since the previous role isn't compatible with Ansible 2.9
+
 ## 2.4.0 - October 18, 2019
 
 ### Added
