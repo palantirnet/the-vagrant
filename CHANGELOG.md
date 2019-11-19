@@ -1,5 +1,17 @@
 # Change Log
 
+## Unreleased
+
+### Changed
+
+* the-vagrant now uses a configuration yml, rather than copying the core Vagrantfile code into the project repository. This reduces the ability of projects to customize their Vagrant usage, but will allow us to more easily fix bugs and update functionality for existing installations.
+
+### Updating from 2.x
+
+You will need to reinstall the-vagrant in your project by running `vendor/bin/the-vagrant-installer`. Any customizations to your current `Vagrantfile` will be lost, but the same configuration options are available.
+
+This update does **not** require destroying or re-provisioning your current box.
+
 ## 2.5.0 - November 18, 2019
 
 ### Changed
