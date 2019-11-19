@@ -39,7 +39,7 @@
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
         <property name="vagrant.ansible_template.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning-template"/>
         <property name="vagrant.config.source" value="${phing.dir.vagrant}/../conf/vagrant/the-vagrant.yml"/>
-        <property name="vagrant.config.dest" value="${phing.dir.vagrant}/../conf/vagrant/.the-vagrant.yml"/>
+        <property name="vagrant.config.dest" value="${vagrant.installdir}/.the-vagrant.yml"/>
         <property name="vagrant.vagrantfile.source" value="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile"/>
         <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile"/>
 
