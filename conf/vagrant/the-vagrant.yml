@@ -1,10 +1,11 @@
 project: "@projectname@"
 hostname: "@projectname@.local"
 extra_hostnames:
+playbook: "@playbook@"
 ansible_solr_enabled: @ansible_solr_enabled@
 ansible_https_enabled: @ansible_https_enabled@
 ansible_node_version: @ansible_node_version@
 ansible_project_web_root: "@ansible_project_web_root@"
 ansible_timezone: "America/Chicago"
 ansible_system_packages:
-ansible_custom_playbook:
+ansible_custom_playbook: "@ansible_custom_playbook@"

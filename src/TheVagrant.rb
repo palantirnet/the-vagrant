@@ -5,6 +5,7 @@ class TheVagrant
 
   DEFAULTS = {
     'extra_hostnames' => [],
+    'playbook' => "vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/drupal8-skeleton.yml",
     'ansible_solr_enabled' => true,
     'ansible_https_enabled' => true,
     'ansible_node_version' => 8,
