@@ -38,6 +38,8 @@
         <property name="vagrant.installdir" value="${application.startdir}"/>
         <property name="vagrant.ansible.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning"/>
         <property name="vagrant.ansible_template.source" value="${phing.dir.vagrant}/../conf/vagrant/provisioning-template"/>
+        <property name="vagrant.config.source" value="${phing.dir.vagrant}/../conf/vagrant/the-vagrant.yml"/>
+        <property name="vagrant.config.dest" value="${phing.dir.vagrant}/../conf/vagrant/.the-vagrant.yml"/>
         <property name="vagrant.vagrantfile.source" value="${phing.dir.vagrant}/../conf/vagrant/Vagrantfile"/>
         <property name="vagrant.vagrantfile.dest" value="${vagrant.installdir}/Vagrantfile"/>
 
@@ -101,7 +103,7 @@
             </else>
         </if>
 
-        <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true">
+        <copy file="${vagrant.config.source}" tofile="${vagrant.config.dest}" overwrite="true">
             <filterchain>
                 <replacetokens>
                     <token key="projectname" value="${projectname}"/>
@@ -114,6 +116,8 @@
                 </replacetokens>
             </filterchain>
         </copy>
+
+        <copy file="${vagrant.vagrantfile.source}" tofile="${vagrant.vagrantfile.dest}" overwrite="true" />
     </target>
 
 
