@@ -1,10 +1,15 @@
 # Change Log
 
-## Unreleased
+## 2.5.0 - November 18, 2019
 
 ### Changed
 
 * Switched the Ansible Galaxy role used to install nvm, since the previous role isn't compatible with Ansible 2.9
+
+### Updating from 2.4.0
+
+* No changes to your project are required.
+* This update does **not** require destroying your current vagrant box.
 
 ## 2.4.0 - October 18, 2019
 
