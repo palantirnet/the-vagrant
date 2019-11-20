@@ -1,20 +1,23 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 #
-# Wrapper for our install command; at least this way it's somewhat discoverable.
-# Previously:
-#   vendor/bin/phing -f vendor/palantirnet/the-vagrant/tasks/vagrant.xml
+# Install script.
+#
 
-# Relative path to this script.
-SCRIPT=$(readlink "$0")
+require 'Pathname'
+require_relative '../src/TheVagrant.rb'
+require_relative '../src/Wizard.rb'
 
-# Absolute path to this script's parent directory.
-SCRIPTPATH=$(cd `dirname $0` && cd `dirname $SCRIPT` && pwd)
+# This script should only be run from the project root where the-vagrant is being installed.
+if Pathname.new(Dir.pwd).relative_path_from(Pathname.new("#{__dir__}/../../../../")).to_s != '.'
+  puts "Please run this command from your project root."
+  exit
+end
 
-REPOPATH=$(cd `dirname $SCRIPTPATH` && cd ../../../ && pwd)
+# Location of the project directory
+$the_vagrant_project_dir = Dir.pwd
 
-if [ "$REPOPATH" = `pwd` ]; then
-  # Run our install task.
-  $SCRIPTPATH/../../../bin/phing -f $SCRIPTPATH/../tasks/vagrant.xml
-else
-  echo "Please run this command from your project root."
-fi
+# Location of the-vagrant's config file
+$the_vagrant_config = '#{$the_vagrant_project_dir}/.the-vagrant.yml'
+
+the_vagrant = TheVagrant.new($the_vagrant_project_dir)
+Wizard::init(the_vagrant)

@@ -48,18 +48,26 @@ class TheVagrant
 
     # The 'project' and 'hostname' should be based on the project directory if they're not
     # provided.
-    if !@config.has_key?('project')
+    if !@config.has_key?('project') or @config['project'].empty?
       @config['project'] = File.basename(@project_dir)
       print "  the-vagrant: Configuration value 'project' not set: using '#{@config['project']}'\r\n"
     end
 
-    if !@config.has_key?('hostname')
+    if !@config.has_key?('hostname') or @config['hostname'].empty?
       @config['hostname'] = "#{@config['project']}.local"
     end
 
     # Override the web root if the current value is not a directory within the project.
     if !@config.has_key?('ansible_project_web_root') or !File.directory?(@config['ansible_project_web_root'])
       @config['ansible_project_web_root'] = (File.directory?("#{@project_dir}/docroot") ? "docroot" : "web")
+    end
+
+    # If there's a custom playbook file, make sure that we're using it
+    custom_playbook = Dir.glob("#{@project_dir}/provisioning/*.yml").delete_if {|yml| yml == 'requirements.yml' }.first
+    if custom_playbook
+      @config['ansible_custom_playbook'] = 'provisioning/' + File.basename(custom_playbook)
+    elsif ! File.exist?("#{@project_dir}/#{@config['ansible_custom_playbook']}")
+      @config['ansible_custom_playbook'] = ''
     end
 
     # Validate variable types of configuration values
@@ -88,7 +96,7 @@ class TheVagrant
 
   def config_set(name, value)
     # Fix variable types of string inputs
-    if value.class != DEFAULTS[name].class
+    if DEFAULTS.include? name and value.class != DEFAULTS[name].class
       if DEFAULTS[name].is_a? Array
         value = [value.split(',').map {|val| val.strip }]
       elsif (DEFAULTS[name].is_a? TrueClass or DEFAULTS[name].is_a? FalseClass) and not (value.is_a? TrueClass or value.is_a? FalseClass)

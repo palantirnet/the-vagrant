@@ -1,14 +1,6 @@
 require 'FileUtils'
 require_relative 'TheVagrant.rb'
 
-$the_vagrant_dir = '/Users/white/repos/drupal-skeleton/vendor/palantirnet/the-vagrant'
-
-# Location of the project directory
-$the_vagrant_project_dir = '/Users/white/repos/drupal-skeleton'
-
-# Location of the-vagrant's config file
-$the_vagrant_config = '/Users/white/repos/drupal-skeleton/.the-vagrant.yml'
-
 
 class Wizard
 
@@ -17,6 +9,7 @@ class Wizard
     options = [
       [:existing, 'Use existing configuration'],
       [:default, 'Install with default configuration'],
+      [:playbook_template, 'Add custom Ansible playbook template'],
       [:show, 'Show configuration'],
       [:edit, 'Edit configuration'],
       [:cancel, 'Cancel'],
@@ -59,6 +52,21 @@ class Wizard
       the_vagrant.config_prompt
       the_vagrant.config_write
       FileUtils.copy_file("#{__dir__}/../conf/vagrant/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
+      self.init(the_vagrant)
+      return
+
+    when :playbook_template
+      if File.exist?("#{the_vagrant.project_dir}/provisioning")
+        puts "Warning: #{the_vagrant.project_dir}/provisioning already exists."
+      else
+        FileUtils.cp_r("#{__dir__}/../conf/vagrant/provisioning-template", "#{the_vagrant.project_dir}/provisioning")
+        FileUtils.mv("#{the_vagrant.project_dir}/provisioning/project.yml", "#{the_vagrant.project_dir}/provisioning/#{the_vagrant.config['project']}.yml")
+        the_vagrant.config_set('ansible_custom_playbook', "provisioning/#{the_vagrant.config['project']}.yml")
+        the_vagrant.config_write
+      end
+
+      puts "Using #{the_vagrant.config['ansible_custom_playbook']}"
+      self.init(the_vagrant)
       return
 
     else
@@ -69,7 +77,3 @@ class Wizard
 
 
 end
-
-the_vagrant = TheVagrant.new($the_vagrant_project_dir)
-
-Wizard::init(the_vagrant)
