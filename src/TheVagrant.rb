@@ -57,7 +57,6 @@ class TheVagrant
     # provided.
     if !@config.has_key?('project') or @config['project'].empty?
       @config['project'] = File.basename(@project_dir)
-      print "  the-vagrant: Configuration value 'project' not set: using '#{@config['project']}'\r\n"
     end
 
     if !@config.has_key?('hostname') or @config['hostname'].empty?
