@@ -1,6 +1,6 @@
 # Load configuration for the-vagrant
 require_relative 'src/TheVagrant.rb'
-the_vagrant = TheVagrant.new($the_vagrant_config, $the_vagrant_project_dir)
+the_vagrant = TheVagrant.new($the_vagrant_project_dir, $the_vagrant_config)
 
 
 # Ensure Vagrant requirements are present
