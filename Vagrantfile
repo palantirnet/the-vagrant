@@ -60,8 +60,8 @@ Vagrant.configure(2) do |config|
             "nvm_node_versions" => [ the_vagrant.config['ansible_node_version'] ],
         }
 
-        ansible.galaxy_role_file = "vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/requirements.yml"
-        ansible.galaxy_roles_path = "vendor/palantirnet/the-vagrant/conf/vagrant/provisioning/roles/"
+        ansible.galaxy_role_file = "vendor/palantirnet/the-vagrant/provisioning/requirements.yml"
+        ansible.galaxy_roles_path = "vendor/palantirnet/the-vagrant/provisioning/roles/"
     end
 
     if (!the_vagrant.config['ansible_custom_playbook'].empty?)

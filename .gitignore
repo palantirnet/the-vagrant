@@ -1,2 +1,2 @@
 /vendor/
-/conf/vagrant/provisioning/roles/elnebuloso.nvm
+/provisioning/roles/elnebuloso.nvm

@@ -65,7 +65,7 @@ A few more things can be customized directly in your `Vagrantfile`:
 * Extra apt packages to install
 * The PHP timezone
 
-By default, the-vagrant references ansible roles from the package at `vendor/palantirnet/the-vagrant/conf/vagrant/provisioning`. If your project needs configuration beyond what is provided via in the `Vagrantfile`, you can re-run the install script and update the provisioning.
+By default, the-vagrant references ansible roles from the package at `vendor/palantirnet/the-vagrant/provisioning`. If your project needs configuration beyond what is provided via in the `Vagrantfile`, you can re-run the install script and update the provisioning.
 
 ### Run a custom playbook in addition to the defaults
 

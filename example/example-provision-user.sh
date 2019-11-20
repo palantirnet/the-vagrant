@@ -1,8 +1,11 @@
 #!/bin/bash
-
-# To use a local user provisioning file, you can either copy this one into place
-# with `cp scripts/example-provision-user scripts/provision-user` or create one
-# of your own.
+#
+# To use a local user provisioning file, you can copy this one into place with:
+#   cp vendor/palantirnet/the-vagrant/example/example-provision-user artifacts/provision-user
+#
+# Or, create your own script within your project at `artifacts/provision-user`. The
+# `artifacts` directory is typically excluded from version control, so this allows
+# individual developers to customize their VM shell.
 
 if [ ! -d "$HOME/.dotfiles" ]; then
   # Get dotfiles and put them in place.

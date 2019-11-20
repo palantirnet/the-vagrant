@@ -30,14 +30,14 @@ class Wizard
 
     case options[selection][0]
     when :existing
-      FileUtils.copy_file("#{__dir__}/../conf/vagrant/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
+      FileUtils.copy_file("#{__dir__}/../install/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
       puts "Installed with existing configuration"
 
     when :default
       if File.exist?(the_vagrant.config_file)
         File.delete(the_vagrant.config_file)
       end
-      FileUtils.copy_file("#{__dir__}/../conf/vagrant/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
+      FileUtils.copy_file("#{__dir__}/../install/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
       puts "Installed with default configuration"
 
     when :show
@@ -51,7 +51,7 @@ class Wizard
       puts "Editing configuration:"
       the_vagrant.config_prompt
       the_vagrant.config_write
-      FileUtils.copy_file("#{__dir__}/../conf/vagrant/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
+      FileUtils.copy_file("#{__dir__}/../install/Vagrantfile", "#{the_vagrant.project_dir}/Vagrantfile")
       self.init(the_vagrant)
       return
 
@@ -59,7 +59,7 @@ class Wizard
       if File.exist?("#{the_vagrant.project_dir}/provisioning")
         puts "Warning: #{the_vagrant.project_dir}/provisioning already exists."
       else
-        FileUtils.cp_r("#{__dir__}/../conf/vagrant/provisioning-template", "#{the_vagrant.project_dir}/provisioning")
+        FileUtils.cp_r("#{__dir__}/../install/provisioning-template", "#{the_vagrant.project_dir}/provisioning")
         FileUtils.mv("#{the_vagrant.project_dir}/provisioning/project.yml", "#{the_vagrant.project_dir}/provisioning/#{the_vagrant.config['project']}.yml")
         the_vagrant.config_set('ansible_custom_playbook', "provisioning/#{the_vagrant.config['project']}.yml")
         the_vagrant.config_write
