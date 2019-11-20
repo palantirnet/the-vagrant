@@ -31,15 +31,21 @@ class TheVagrant
 
 
   def config_load
+    @stored_config = {}
+
+    if !File.exist?(@config_file)
+      return
+    end
+
     begin
       @stored_config = YAML.load_file(@config_file)
       if !(@stored_config.is_a? Hash)
-        raise "#{new_config_file} does not contain well-formed YAML"
+        raise "Config file does not contain YAML keys and values"
       end
     rescue StandardError => e
-      puts "Warning: #{e}"
-      puts "Continuing with defaults."
-      @stored_config = {}
+      puts "Error loading the-vagrant config: couldn't parse file #{@config_file} as YAML"
+      puts e
+      exit
     end
   end
 
