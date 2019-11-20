@@ -28,27 +28,20 @@ This setup will use a version of the [palantir/drupalbox](https://app.vagrantup.
 To use the-vagrant on a project, you will need to:
 
 1. Require the `palantirnet/the-vagrant` package
-2. Run the-vagrant's install script to add and configure the Vagrantfile
 
-### Require the `palantirnet/the-vagrant` package with composer
+    ```sh
+    composer require palantirnet/the-vagrant
+    ```
+    
+2. Run the install script
 
-```sh
-$> composer require palantirnet/the-vagrant
-```
+    ```
+    vendor/bin/the-vagrant-installer
+    ```
 
-### Runing the install script
+3. Check in and commit the new `Vagrantfile` and `.the-vagrant.yml` files to git
 
-1. From within your project, run `vendor/bin/the-vagrant-installer`
-2. This will prompt you for project-specific configuration:
-  * The project hostname
-  * The project web root
-  * Enable Solr
-  * Enable HTTPS
-  * Make a project-specific copy of the Ansible roles and a copy of the default playbook
-  * OR make a project-specific Ansible playbook to be run _in addition_ to the default playbook
-3. Check in and commit the new Vagrantfile to git
-
-You can re-run the install script later if you need to change your configuration.
+You can re-run the install script later if you need to change your configuration. The default installation will provision a Vagrant machine using the name of the project directory, with Solr, https, nvm, gulp, drupal-check, and drush.
 
 ## Customizing your environment
 
@@ -56,37 +49,29 @@ Several things can be configured during the interactive installation:
 
 * The project hostname
 * The project web root
-* Enable Solr
-* Enable HTTPS
+* Extra hostnames for this VM (use this for multisites)
 
-A few more things can be customized directly in your `Vagrantfile`:
+| Name | Default Value | Description |
+|---|---|---|
+| `project` | *project_directory* | The name to use for the Vagrant box. Typically the same as the project directory. |
+| `hostname` | *project_directory*.local | The URL to provide for the box. |
+| `extra_hostnames` | | An array of additional URLs to provide for the box. In the installation wizard, enter this as a comma separated list. |
+| `ansible_solr_enabled` | true | Whether Solr should be enabled on the box. |
+| `ansible_https_enabled` | true | Whether HTTPS should be configured on the box. |
+| `ansible_node_version` | 8 | The version of Node.js to install on the box. You can use numbered versions, or `stable` -- this is passed to nvm. |
+| `ansible_project_web_root` | `web` | The web root to serve via Apache. the-vagrant will automatically detect if `docroot` is present instead. |
+| `ansible_timezone` | America/Chicago | The timezone to use for PHP on the box. |
+| `ansible_system_packages` |  | An array of additional packages to install using apt. |
+| `ansible_custom_playbook` |  | Path to a custom playbook, relative to the project. If there's a playbook within the project at `provisioning/*.yml`, the-vagrant will automatically detect it. |
 
-* Extra hostnames for this VM (use this for multisite)
-* Extra apt packages to install
-* The PHP timezone
-
-By default, the-vagrant references ansible roles from the package at `vendor/palantirnet/the-vagrant/provisioning`. If your project needs configuration beyond what is provided via in the `Vagrantfile`, you can re-run the install script and update the provisioning.
 
 ### Run a custom playbook in addition to the defaults
 
-1. Re-run the install script: `vendor/bin/the-vagrant-installer`
-2. When you are prompted to copy the Ansible roles, reply `n`
-3. When you are prompted to add an additional Ansible playbook to your project, reply `Y`
+the-vagrant uses an Ansible playbook for provisioning, which you can find in the `provisioning` directory of the project.
 
-  > Copy Ansible roles into your project for customization (Y,n) [n]? n
-  >
-  > OR add an additional Ansible playbook to your project  (Y,n) [n]? Y
+1. Re-run the install script: `vendor/bin/the-vagrant-installer`
+2. When you are prompted for the installation method, select `Add custom Ansible playbook template`
 3. This will create a new `provisioning` directory in your project that contains a simple Ansible playbook and example role. Your `Vagrantfile` will refer to this playbook in addition to the one in the `vendor` directory.
-4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
-5. Add or update the roles and playbook as necessary.
-
-### 100% custom provisioning
-
-1. Re-run the install script: `vendor/bin/the-vagrant-installer`
-2. When you are prompted to copy the Ansible roles, reply `Y`:
-
-  > Copy Ansible roles into your project for customization (Y,n) [n]?
-3. This will create a new `provisioning` directory in your project that contains the Ansible playbook and roles. Your `Vagrantfile` will refer to this playbook instead of the one in the `vendor` directory.
 4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
 5. Add or update the roles and playbook as necessary.
 
@@ -125,21 +110,6 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
             ansible.galaxy_roles_path = "provisioning/roles/"
         end
     end
-  ```
-* In the Vagrantfile, pass additional configuration through to the Ansible provisioners. A great use case for this is setting the `php_ini_memory_limit` when using the default `palantirnet/the-vagrant` provisioning:
-
-  ```
-    ansible.extra_vars = {
-      "project" => project,
-      "hostname" => hostname,
-      "extra_hostnames" => extra_hostnames,
-      "solr_enabled" => ansible_solr_enabled,
-      "https_enabled" => ansible_https_enabled,
-      "project_web_root" => ansible_project_web_root,
-      "timezone" => ansible_timezone,
-      "system_packages" => ansible_system_packages,
-      "php_ini_memory_limit" => "512M",
-    }
   ```
 
 # Default Software
