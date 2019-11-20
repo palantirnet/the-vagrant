@@ -62,6 +62,7 @@ Several things can be configured during the interactive installation:
 | `ansible_project_web_root` | `web` | The web root to serve via Apache. the-vagrant will automatically detect if `docroot` is present instead. |
 | `ansible_timezone` | America/Chicago | The timezone to use for PHP on the box. |
 | `ansible_system_packages` |  | An array of additional packages to install using apt. |
+| `php_memory_limit` | 512M | The PHP memory limit string. |
 | `ansible_custom_playbook` |  | Path to a custom playbook, relative to the project. If there's a playbook within the project at `provisioning/*.yml`, the-vagrant will automatically detect it. |
 
 

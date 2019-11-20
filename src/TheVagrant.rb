@@ -13,6 +13,7 @@ class TheVagrant
     'ansible_timezone' => "America/Chicago",
     'ansible_system_packages' => [],
     'ansible_custom_playbook' => "",
+    'php_memory_limit' => "512M",
   }
 
   HIDE_DEFAULTS = [

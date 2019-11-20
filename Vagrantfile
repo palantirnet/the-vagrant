@@ -55,6 +55,7 @@ Vagrant.configure(2) do |config|
             "project_web_root" => the_vagrant.config['ansible_project_web_root'],
             "timezone" => the_vagrant.config['ansible_timezone'],
             "system_packages" => the_vagrant.config['ansible_system_packages'],
+            "php_ini_memory_limit" => the_vagrant.config['php_memory_limit'],
             "nvm_version" => "v0.33.11",
             "nvm_default_node_version" => the_vagrant.config['ansible_node_version'],
             "nvm_node_versions" => [ the_vagrant.config['ansible_node_version'] ],
