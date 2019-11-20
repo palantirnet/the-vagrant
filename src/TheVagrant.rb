@@ -135,6 +135,8 @@ class TheVagrant
     else
       File.open(@config_file, 'w') {|f| f.write customized_config.to_yaml }
     end
+
+    @stored_config = customized_config
   end
 
 
