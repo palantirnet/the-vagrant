@@ -4,7 +4,13 @@
 
 ### Changed
 
-* the-vagrant now uses a configuration yml, rather than copying the core Vagrantfile code into the project repository. This reduces the ability of projects to customize their Vagrant usage, but will allow us to more easily fix bugs and update functionality for existing installations.
+* The Vagrantfile installed into projects now loads another file that lives within the-vagrant itself, and uses a configuration yml for customization, rather than copying the core Vagrantfile code into the project repository. This reduces the ability of projects to customize their Vagrant usage, but allows us fix bugs and add functionality for existing installations.
+* The install script has been rewritten in Ruby, so this project no longer has a dependency on phing.
+
+### Added
+
+* New default configuration option for the PHP memory limit
+
 
 ### Updating from 2.x
 
