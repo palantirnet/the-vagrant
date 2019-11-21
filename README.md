@@ -35,7 +35,7 @@ To use the-vagrant on a project, you will need to:
     
 2. Run the install script
 
-    ```
+    ```sh
     vendor/bin/the-vagrant-installer
     ```
 

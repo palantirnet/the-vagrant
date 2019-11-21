@@ -11,7 +11,6 @@
 
 * New default configuration option for the PHP memory limit
 
-
 ### Updating from 2.x
 
 You will need to reinstall the-vagrant in your project by running `vendor/bin/the-vagrant-installer`. Any customizations to your current `Vagrantfile` will be lost, but the same configuration options are available.
