@@ -13,7 +13,6 @@
     - { role: vhost }
     - { role: https }
     - { role: solr }
-    - { role: drush }
     - { role: drupal-check }
     - { role: gulp }
     - { role: elnebuloso.nvm,
