@@ -1,5 +1,18 @@
 # Change Log
 
+## UNRELEASED
+
+### Changed
+
+* Removed the custom drush wrapper in ~/bin. Drush 9 handles this itself.
+
+### Updating from 2.5
+
+* This update does **not** require destroying your current vagrant box.
+* As a developer, you may want to:
+  1. From your Vagrant box, `rm ~/bin/drush`
+  2. Log out of your vagrant and then back in before continuing to work
+
 ## 2.5.0 - November 18, 2019
 
 ### Changed
