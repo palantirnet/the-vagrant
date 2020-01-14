@@ -1,5 +1,15 @@
 # Change Log
 
+## UNRELEASED
+
+### Added
+
+* Added a trigger to the default Vagrantfile that keeps the installed version of Composer up to date (#68)
+
+### Updating to this version
+
+This version includes changes to the `Vagrantfile` template. To get these changes, either re-run the-vagrant's installer with `vendor/bin/the-vagrant-installer`, OR manually apply the changes from the [diff from #69](https://github.com/palantirnet/the-vagrant/pull/69/files).
+
 ## 2.5.0 - November 18, 2019
 
 ### Changed
