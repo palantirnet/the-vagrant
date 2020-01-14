@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Added
+
+* Added a trigger to the default Vagrantfile that keeps the installed version of Composer up to date (#68)
+
 ### Changed
 
 * Removed the custom drush wrapper in ~/bin. Drush 9 handles this itself.
@@ -9,7 +13,8 @@
 ### Updating from 2.5
 
 * This update does **not** require destroying your current vagrant box.
-* As a developer, you may want to:
+* This version includes changes to the `Vagrantfile` template. To get these changes, either re-run the-vagrant's installer with `vendor/bin/the-vagrant-installer`, OR manually apply the changes from the [diff from #69](https://github.com/palantirnet/the-vagrant/pull/69/files).
+* As a developer, you may also want to:
   1. From your Vagrant box, `rm ~/bin/drush`
   2. Log out of your vagrant and then back in before continuing to work
 
