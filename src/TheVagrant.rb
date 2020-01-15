@@ -6,19 +6,21 @@ class TheVagrant
   DEFAULTS = {
     'extra_hostnames' => [],
     'playbook' => "vendor/palantirnet/the-vagrant/provisioning/drupal8-skeleton.yml",
-    'ansible_solr_enabled' => true,
-    'ansible_https_enabled' => true,
-    'ansible_node_version' => '8',
-    'ansible_project_web_root' => "web",
-    'ansible_timezone' => "America/Chicago",
-    'ansible_system_packages' => [],
-    'ansible_custom_playbook' => "",
-    'php_memory_limit' => "512M",
+    'playbook_custom' => "",
+    'ansible_vars.solr_enabled' => true,
+    'ansible_vars.https_enabled' => true,
+    'ansible_vars.project_web_root' => 'web',
+    'ansible_vars.timezone' => 'America/Chicago',
+    'ansible_vars.system_packages' => [],
+    'ansible_vars.php_ini_memory_limit' => '512M',
+    'ansible_vars.nvm_version' => 'v0.33.11',
+    'ansible_vars.nvm_default_node_version' => '8',
+    'ansible_vars.nvm_node_versions' => '8',
   }
 
   HIDE_DEFAULTS = [
     'playbook',
-    'ansible_custom_playbook',
+    'playbook_custom',
   ]
 
   def initialize(project_dir, config_file = '')
@@ -64,16 +66,16 @@ class TheVagrant
     end
 
     # Override the web root if the current value is not a directory within the project.
-    if !@config.has_key?('ansible_project_web_root') or !File.directory?(@config['ansible_project_web_root'])
-      @config['ansible_project_web_root'] = (File.directory?("#{@project_dir}/docroot") ? "docroot" : "web")
+    if !@config.has_key?('ansible_vars.project_web_root') or !File.directory?(@config['ansible_vars.project_web_root'])
+      @config['ansible_vars.project_web_root'] = (File.directory?("#{@project_dir}/docroot") ? "docroot" : "web")
     end
 
     # If there's a custom playbook file, make sure that we're using it
-    custom_playbook = Dir.glob("#{@project_dir}/provisioning/*.yml").delete_if {|yml| yml == 'requirements.yml' }.first
-    if custom_playbook
-      @config['ansible_custom_playbook'] = 'provisioning/' + File.basename(custom_playbook)
-    elsif ! File.exist?("#{@project_dir}/#{@config['ansible_custom_playbook']}")
-      @config['ansible_custom_playbook'] = ''
+    playbook_custom = Dir.glob("#{@project_dir}/provisioning/*.yml").delete_if {|yml| yml == 'requirements.yml' }.first
+    if playbook_custom
+      @config['playbook_custom'] = 'provisioning/' + File.basename(playbook_custom)
+    elsif ! File.exist?("#{@project_dir}/#{@config['playbook_custom']}")
+      @config['playbook_custom'] = ''
     end
 
     # Validate variable types of configuration values
@@ -136,6 +138,24 @@ class TheVagrant
     end
 
     @stored_config = customized_config
+  end
+
+
+  # Extract a hash containing keys with a particular prefix. This allows us to use the
+  # 'ansible_vars' as its own array in the Vagrantfile, but handle the config merging and
+  # defaults the same way as for other variables.
+  def get_prefix(prefix)
+    result = {}
+
+    @config.each do |name, value|
+      if name.start_with?(prefix)
+        new_name = +name
+        new_name[prefix] = ''
+        result[new_name] = value
+      end
+    end
+
+    return result
   end
 
 
