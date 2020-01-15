@@ -7,15 +7,15 @@ class TheVagrant
     'extra_hostnames' => [],
     'playbook' => "vendor/palantirnet/the-vagrant/provisioning/drupal8-skeleton.yml",
     'playbook_custom' => "",
-    'ansible_vars.solr_enabled' => true,
-    'ansible_vars.https_enabled' => true,
-    'ansible_vars.project_web_root' => 'web',
-    'ansible_vars.timezone' => 'America/Chicago',
-    'ansible_vars.system_packages' => [],
-    'ansible_vars.php_ini_memory_limit' => '512M',
-    'ansible_vars.nvm_version' => 'v0.33.11',
-    'ansible_vars.nvm_default_node_version' => '8',
-    'ansible_vars.nvm_node_versions' => '8',
+    'solr_enabled' => true,
+    'https_enabled' => true,
+    'project_web_root' => 'web',
+    'timezone' => 'America/Chicago',
+    'system_packages' => [],
+    'php_ini_memory_limit' => '512M',
+    'nvm_version' => 'v0.33.11',
+    'nvm_default_node_version' => '8',
+    'nvm_node_versions' => '8',
   }
 
   HIDE_DEFAULTS = [
@@ -66,8 +66,8 @@ class TheVagrant
     end
 
     # Override the web root if the current value is not a directory within the project.
-    if !@config.has_key?('ansible_vars.project_web_root') or !File.directory?(@config['ansible_vars.project_web_root'])
-      @config['ansible_vars.project_web_root'] = (File.directory?("#{@project_dir}/docroot") ? "docroot" : "web")
+    if !@config.has_key?('project_web_root') or !File.directory?(@config['project_web_root'])
+      @config['project_web_root'] = (File.directory?("#{@project_dir}/docroot") ? "docroot" : "web")
     end
 
     # If there's a custom playbook file, make sure that we're using it
@@ -138,24 +138,6 @@ class TheVagrant
     end
 
     @stored_config = customized_config
-  end
-
-
-  # Extract a hash containing keys with a particular prefix. This allows us to use the
-  # 'ansible_vars' as its own array in the Vagrantfile, but handle the config merging and
-  # defaults the same way as for other variables.
-  def get_prefix(prefix)
-    result = {}
-
-    @config.each do |name, value|
-      if name.start_with?(prefix)
-        new_name = +name
-        new_name[prefix] = ''
-        result[new_name] = value
-      end
-    end
-
-    return result
   end
 
 

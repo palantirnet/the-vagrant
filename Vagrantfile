@@ -46,11 +46,7 @@ Vagrant.configure(2) do |config|
             "all:children" => ["#{the_vagrant.config['project']}"]
         }
 
-        ansible.extra_vars = the_vagrant.get_prefix('ansible_vars.').merge!({
-            "project" => the_vagrant.config['project'],
-            "hostname" => the_vagrant.config['hostname'],
-            "extra_hostnames" => the_vagrant.config['extra_hostnames'],
-        })
+        ansible.extra_vars = the_vagrant.config
 
         ansible.galaxy_role_file = "vendor/palantirnet/the-vagrant/provisioning/requirements.yml"
         ansible.galaxy_roles_path = "vendor/palantirnet/the-vagrant/provisioning/roles/"
