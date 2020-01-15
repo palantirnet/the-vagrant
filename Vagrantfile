@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.provision "the-vagrant", type: "ansible" do |ansible|
-        ansible.playbook = the_vagrant.config['playbook']
+        ansible.playbook = the_vagrant.config['the_vagrant_playbook']
 
         ansible.groups = {
             "all:children" => ["#{the_vagrant.config['project']}"]
@@ -52,9 +52,9 @@ Vagrant.configure(2) do |config|
         ansible.galaxy_roles_path = "vendor/palantirnet/the-vagrant/provisioning/roles/"
     end
 
-    if (!the_vagrant.config['playbook_custom'].empty?)
+    if (!the_vagrant.config['the_vagrant_custom_playbook'].empty?)
         config.vm.provision "#{the_vagrant.config['project']}-provision", type: "ansible" do |ansible|
-            ansible.playbook = the_vagrant.config['playbook_custom']
+            ansible.playbook = the_vagrant.config['the_vagrant_custom_playbook']
         end
     end
 

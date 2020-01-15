@@ -5,8 +5,8 @@ class TheVagrant
 
   DEFAULTS = {
     'extra_hostnames' => [],
-    'playbook' => "vendor/palantirnet/the-vagrant/provisioning/drupal8-skeleton.yml",
-    'playbook_custom' => "",
+    'the_vagrant_playbook' => "vendor/palantirnet/the-vagrant/provisioning/drupal8-skeleton.yml",
+    'the_vagrant_custom_playbook' => "",
     'solr_enabled' => true,
     'https_enabled' => true,
     'project_web_root' => 'web',
@@ -19,8 +19,8 @@ class TheVagrant
   }
 
   HIDE_DEFAULTS = [
-    'playbook',
-    'playbook_custom',
+    'the_vagrant_playbook',
+    'the_vagrant_custom_playbook',
   ]
 
   def initialize(project_dir, config_file = '')
@@ -71,11 +71,13 @@ class TheVagrant
     end
 
     # If there's a custom playbook file, make sure that we're using it
-    playbook_custom = Dir.glob("#{@project_dir}/provisioning/*.yml").delete_if {|yml| yml == 'requirements.yml' }.first
-    if playbook_custom
-      @config['playbook_custom'] = 'provisioning/' + File.basename(playbook_custom)
-    elsif ! File.exist?("#{@project_dir}/#{@config['playbook_custom']}")
-      @config['playbook_custom'] = ''
+    # Look for all the yml files not named 'requirements.yml'
+    custom_playbook = Dir.glob("#{@project_dir}/provisioning/*.yml").delete_if {|yml| yml == 'requirements.yml' }.first
+    if custom_playbook
+      @config['the_vagrant_custom_playbook'] = 'provisioning/' + File.basename(custom_playbook)
+    elsif ! File.exist?("#{@project_dir}/#{@config['the_vagrant_custom_playbook']}")
+      # If there's a config value pointing to a nonexistant file, clean it up.
+      @config['the_vagrant_custom_playbook'] = ''
     end
 
     # Validate variable types of configuration values

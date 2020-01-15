@@ -61,11 +61,11 @@ class Wizard
       else
         FileUtils.cp_r("#{__dir__}/../install/provisioning-template", "#{the_vagrant.project_dir}/provisioning")
         FileUtils.mv("#{the_vagrant.project_dir}/provisioning/project.yml", "#{the_vagrant.project_dir}/provisioning/#{the_vagrant.config['project']}.yml")
-        the_vagrant.config_set('playbook_custom', "provisioning/#{the_vagrant.config['project']}.yml")
+        the_vagrant.config_set('the_vagrant_custom_playbook', "provisioning/#{the_vagrant.config['project']}.yml")
         the_vagrant.config_write
       end
 
-      puts "Using #{the_vagrant.config['playbook_custom']}"
+      puts "Using #{the_vagrant.config['the_vagrant_custom_playbook']}"
       self.init(the_vagrant)
       return
 
