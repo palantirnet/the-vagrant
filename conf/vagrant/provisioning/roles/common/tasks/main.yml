@@ -54,9 +54,17 @@
   when: provision_user.stat.exists
   tags: common
 
+- name: Add the ~/bin to the path
+  lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:$HOME/bin"'
+  tags: drush
+
 - name: Add the project's vendor/bin to the path
   lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
+
+- name: Add the ~/bin to the zsh path
+  lineinfile: dest=/home/vagrant/.zshrc state=present create=yes line='export PATH="$PATH:$HOME/bin"'
+  tags: drush
 
 - name: Add $HOME/bin and the project's vendor/bin to the zsh path
   lineinfile: dest=/home/vagrant/.zshrc state=present create=yes line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
