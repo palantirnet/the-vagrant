@@ -9,9 +9,9 @@ class Wizard
     options = [
       [:existing, 'Use existing configuration'],
       [:default, 'Install with default configuration'],
-      [:playbook_template, 'Add custom Ansible playbook template'],
       [:show, 'Show configuration'],
       [:edit, 'Edit configuration'],
+      [:playbook_template, 'Add custom Ansible playbook template'],
       [:cancel, 'Cancel'],
     ]
 
