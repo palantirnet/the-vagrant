@@ -42,7 +42,7 @@ class Wizard
 
     when :show
       puts "Existing configuration:"
-      puts the_vagrant.config.to_yaml
+      puts JSON.pretty_generate(the_vagrant.config)
       puts "---"
       self.init(the_vagrant)
       return
