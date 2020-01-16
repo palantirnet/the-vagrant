@@ -2,7 +2,7 @@
 $the_vagrant_project_dir = "#{__dir__}"
 
 # Location of the-vagrant's config file
-$the_vagrant_config = "#{__dir__}/.the-vagrant.yml"
+$the_vagrant_config = "#{__dir__}/.the-vagrant.json"
 
 # Load the real Vagrantfile
 load "#{__dir__}/vendor/palantirnet/the-vagrant/Vagrantfile"

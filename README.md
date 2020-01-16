@@ -39,7 +39,7 @@ To use the-vagrant on a project, you will need to:
     vendor/bin/the-vagrant-installer
     ```
 
-3. Check in and commit the new `Vagrantfile` and `.the-vagrant.yml` files to git
+3. Check in and commit the new `Vagrantfile` and `.the-vagrant.json` files to git
 
 You can re-run the install script later if you need to change your configuration. The default installation will provision a Vagrant machine using the name of the project directory, with Solr, https, nvm, gulp, drupal-check, and drush.
 

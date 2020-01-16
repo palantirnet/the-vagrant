@@ -17,7 +17,7 @@ end
 $the_vagrant_project_dir = Dir.pwd
 
 # Location of the-vagrant's config file
-$the_vagrant_config = '#{$the_vagrant_project_dir}/.the-vagrant.yml'
+$the_vagrant_config = '#{$the_vagrant_project_dir}/.the-vagrant.json'
 
 the_vagrant = TheVagrant.new($the_vagrant_project_dir)
 Wizard::init(the_vagrant)

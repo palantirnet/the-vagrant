@@ -1,4 +1,4 @@
-require 'yaml'
+require 'json'
 
 
 class TheVagrant
@@ -25,7 +25,7 @@ class TheVagrant
 
   def initialize(project_dir, config_file = '')
     @project_dir = project_dir
-    @config_file = config_file.empty? ? "#{project_dir}/.the-vagrant.yml" : config_file
+    @config_file = config_file.empty? ? "#{project_dir}/.the-vagrant.json" : config_file
 
     config_load
     config_merge
@@ -40,12 +40,12 @@ class TheVagrant
     end
 
     begin
-      @stored_config = YAML.load_file(@config_file)
+      @stored_config = JSON.load(File.open(@config_file))
       if !(@stored_config.is_a? Hash)
-        raise "Config file does not contain YAML keys and values"
+        raise "Config file does not contain JSON keys and values"
       end
     rescue StandardError => e
-      puts "Error loading the-vagrant config: couldn't parse file #{@config_file} as YAML"
+      puts "Error loading the-vagrant config: couldn't parse file #{@config_file} as JSON"
       puts e
       exit
     end
@@ -136,7 +136,7 @@ class TheVagrant
     if customized_config.empty?
       File.delete(@config_file)
     else
-      File.open(@config_file, 'w') {|f| f.write customized_config.to_yaml }
+      File.open(@config_file, 'w') {|f| f.write JSON.pretty_generate(customized_config) }
     end
 
     @stored_config = customized_config
