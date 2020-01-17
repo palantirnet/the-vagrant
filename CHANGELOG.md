@@ -1,6 +1,6 @@
 # Change Log
 
-## UNRELEASED
+## 2.5.1 - January 17, 2020
 
 ### Added
 
