@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.2 - January 17, 2020
+
+### Fixed
+
+* The drupal-check installation was failing because `~/bin` did not yet exist.
+
+No update steps are required.
+
 ## 2.5.1 - January 17, 2020
 
 ### Added
