@@ -45,15 +45,6 @@
   command: /usr/bin/git config --global core.excludesfile ~/.gitignore
   tags: common
 
-- name: Check for user-specific provisioning script
-  stat: path=/var/www/{{ hostname }}/conf/provision-user
-  register: provision_user
-
-- name: Run user-specific provisioning.
-  command: /var/www/{{ hostname }}/conf/provision-user
-  when: provision_user.stat.exists
-  tags: common
-
 - name: Ensure ~/bin exists
   file:
     path: /home/vagrant/bin
@@ -67,14 +58,6 @@
 
 - name: Add the project's vendor/bin to the path
   lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:/var/www/{{ hostname }}/vendor/bin"'
-  tags: common
-
-- name: Add the ~/bin to the zsh path
-  lineinfile: dest=/home/vagrant/.zshrc state=present create=yes line='export PATH="$PATH:$HOME/bin"'
-  tags: drush
-
-- name: Add $HOME/bin and the project's vendor/bin to the zsh path
-  lineinfile: dest=/home/vagrant/.zshrc state=present create=yes line='export PATH="$PATH:$REPO/vendor/bin:$HOME/bin:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
 
 - name: Change directory into the project root on login
