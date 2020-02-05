@@ -45,21 +45,21 @@
   command: /usr/bin/git config --global core.excludesfile ~/.gitignore
   tags: common
 
-- name: Ensure ~/bin exists
+- name: Common | Ensure ~/bin exists
   file:
     path: /home/vagrant/bin
     state: directory
     owner: vagrant
     mode: '755'
 
-- name: Add the ~/bin to the path
+- name: Common | Add the ~/bin to the path
   lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:$HOME/bin"'
-  tags: drush
+  tags: common
 
-- name: Add the project's vendor/bin to the path
+- name: Common | Add the project's vendor/bin to the path
   lineinfile: dest=/home/vagrant/.profile state=present line='export PATH="$PATH:/var/www/{{ hostname }}/vendor/bin"'
   tags: common
 
-- name: Change directory into the project root on login
+- name: Common | Change directory into the project root on login
   lineinfile: dest=/home/vagrant/.profile state=present line='cd /var/www/{{ hostname }}'
   tags: common
