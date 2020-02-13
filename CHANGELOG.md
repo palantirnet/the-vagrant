@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.0 - February 13, 2020
+
+### Changed
+
+* Removed user-specific provisioning and zsh configuration (#72)
+
+This functionality is no longer used by our team, and causes issues with Mac OS 10.15 Catalina. No update steps are required.
+
 ## 2.5.2 - January 17, 2020
 
 ### Fixed
