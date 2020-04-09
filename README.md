@@ -50,6 +50,15 @@ $> composer require palantirnet/the-vagrant
 
 You can re-run the install script later if you need to change your configuration.
 
+## Upgrading
+
+To upgrade the-vagrant in a project, you will need to:
+
+1. `composer update palantirnet/the-vagrant`
+2. Follow any steps from the [release notes](https://github.com/palantirnet/the-vagrant/releases).
+
+*Note:* If you need to update your VM, such as [drupalbox](https://app.vagrantup.com/palantir/boxes/drupalbox), you will need to run `vagrant destroy` then `vagrant box update` and `vagrant up`. Updating the VM doesn't always require updating The Vagrant.
+
 ## Customizing your environment
 
 Several things can be configured during the interactive installation:
