@@ -11,7 +11,5 @@
     "bin": [
         "bin/the-vagrant-installer"
     ],
-    "require": {
-        "phing/phing": "^2.14"
-    }
+    "require": { }
 }

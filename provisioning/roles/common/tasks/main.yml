@@ -31,7 +31,7 @@
     scope: global
   register: git_author_email
   tags: common
-  
+
 - name: Common | Copy gitconfig from template
   template:
     src: gitconfig
@@ -46,11 +46,11 @@
   tags: common
 
 - name: Check for user-specific provisioning script
-  stat: path=/var/www/{{ hostname }}/conf/provision-user
+  stat: path=/var/www/{{ hostname }}/artifacts/provision-user
   register: provision_user
 
 - name: Run user-specific provisioning.
-  command: /var/www/{{ hostname }}/conf/provision-user
+  command: /var/www/{{ hostname }}/artifacts/provision-user
   when: provision_user.stat.exists
   tags: common
 

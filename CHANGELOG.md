@@ -1,5 +1,22 @@
 # Change Log
 
+## Unreleased
+
+### Changed
+
+* The Vagrantfile installed into projects now loads another file that lives within the-vagrant itself, and uses a configuration yml for customization, rather than copying the core Vagrantfile code into the project repository. This reduces the ability of projects to customize their Vagrant usage, but allows us fix bugs and add functionality for existing installations.
+* The install script has been rewritten in Ruby, so this project no longer has a dependency on phing.
+
+### Added
+
+* New default configuration option for the PHP memory limit
+
+### Updating from 2.x
+
+You will need to reinstall the-vagrant in your project by running `vendor/bin/the-vagrant-installer`. Any customizations to your current `Vagrantfile` will be lost, but the same configuration options are available.
+
+This update does **not** require destroying or re-provisioning your current box.
+
 ## 2.5.0 - November 18, 2019
 
 ### Changed
