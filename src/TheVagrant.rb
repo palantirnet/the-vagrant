@@ -1,3 +1,20 @@
+# Read and write the JSON config file for the-vagrant. This is intended to make it hard to
+# break the-vagrant with invalid config values or a broken or missing config file.
+#
+# - Only writes config that doesn't match the default. This means that when the default
+#   values change, projects that haven't overridden the defaults will be updated.
+#
+# - Validates the data type of config values. If the config file contains an invalid
+#   value, post a message and fall back to the default.
+#
+# - Manages contextual defaults:
+#   - project: the parent directory name
+#   - hostname: the project name + ".local"
+#   - project_web_root: "web" or "docroot", whichever is present
+#   - the_vagrant_custom_playbook: set if a playbook can be found at provisioning/*.yml
+#
+# Copyright 2019-2020 Palantir.net, Inc.
+
 require 'json'
 
 

@@ -1,3 +1,8 @@
+# The install wizard for the-vagrant. Allows developers to configure the-vagrant during
+# installation.
+#
+# Copyright 2019-2020 Palantir.net, Inc.
+
 require 'FileUtils'
 require_relative 'TheVagrant.rb'
 
