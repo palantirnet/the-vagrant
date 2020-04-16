@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.1 - April 16, 2020
+
+### Fixed
+
+* Ansible 2.9 compatibility
+
+No update steps are required.
+
 ## 2.6.0 - February 13, 2020
 
 ### Changed
