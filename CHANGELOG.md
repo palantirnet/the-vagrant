@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.2 - May 12, 2020
+
+### Fixed
+
+* Update expired package sources on the drupalbox (fixes for drupalbox 1.4.0 and below, and 2.0.0)
+
+No update steps are required.
+
 ## 2.6.1 - April 16, 2020
 
 ### Fixed
