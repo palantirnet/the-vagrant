@@ -1,5 +1,11 @@
 # Change Log
 
+## UNRELEASED
+
+### Changed
+
+* Removed the install wizard option to copy the Ansible roles into your project and customize. This can still be done, but in almost all cases adding a custom playbook is more maintainable. Existing setups that use this approach will continue to work. ([PR #76](https://github.com/palantirnet/the-vagrant/pull/76))
+
 ## 2.6.2 - May 12, 2020
 
 ### Fixed
