@@ -8,6 +8,8 @@
 
 No update steps are required.
 
+_Note:_ If you chose the option to "Copy Ansible roles into your project for customization" during installation, you will need to manually copy the new steps into the "common" role. (See [PR #75](https://github.com/palantirnet/the-vagrant/pull/75/files))
+
 ## 2.6.1 - April 16, 2020
 
 ### Fixed
