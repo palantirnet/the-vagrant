@@ -18,7 +18,7 @@ _Note: If you are setting up a new project, you likely want to start with [drupa
  * [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager)
  * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads) >= 5.0
-* [Ansible](https://github.com/ansible/ansible)
+* [Ansible](https://github.com/ansible/ansible) >= 2.9
 
 ## Installation
 
@@ -39,8 +39,7 @@ To use the-vagrant on a project, you will need to:
     * The project web root
     * Enable Solr
     * Enable HTTPS
-    * Make a project-specific copy of the Ansible roles and a copy of the default playbook
-    * OR make a project-specific Ansible playbook to be run _in addition_ to the default playbook
+    * Add a project-specific Ansible playbook to be run in addition to the default playbook
 3. Check in and commit the new Vagrantfile to git
 
 If you need to change your configuration later, you can re-run the install script, or edit the `Vagrantfile` directly.
@@ -81,16 +80,6 @@ By default, the-vagrant references ansible roles from the package at `vendor/pal
   >
   > OR add an additional Ansible playbook to your project  (Y,n) [n]? Y
 3. This will create a new `provisioning` directory in your project that contains a simple Ansible playbook and example role. Your `Vagrantfile` will refer to this playbook in addition to the one in the `vendor` directory.
-4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
-5. Add or update the roles and playbook as necessary.
-
-### 100% custom provisioning
-
-1. Re-run the install script: `vendor/bin/the-vagrant-installer`
-2. When you are prompted to copy the Ansible roles, reply `Y`:
-
-  > Copy Ansible roles into your project for customization (Y,n) [n]?
-3. This will create a new `provisioning` directory in your project that contains the Ansible playbook and roles. Your `Vagrantfile` will refer to this playbook instead of the one in the `vendor` directory.
 4. Check in and commit this new `provisioning` directory and updated `Vagrantfile` to git
 5. Add or update the roles and playbook as necessary.
 
