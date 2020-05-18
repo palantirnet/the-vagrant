@@ -15,8 +15,8 @@ _Note: If you are setting up a new project, you likely want to start with [drupa
 
 * [Vagrant](https://www.vagrantup.com/) >= 2.1.0
 * Vagrant plugins:
- * [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager)
- * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
+  * [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager)
+  * [vagrant-auto_network](https://github.com/oscar-stack/vagrant-auto_network)
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads) >= 5.0
 * [Ansible](https://github.com/ansible/ansible) >= 2.9
 
