@@ -4,17 +4,6 @@
 # updating the apt cache on older boxes. Once the older versions (1.4.0 and below) are no longer supported,
 # these first two steps can be removed.
 
-- name: Common | Update Yarn apt key
-  become: true
-  command: apt-key adv --keyserver keys.gnupg.net --recv-keys 72ECF46A56B4AD39C907BBB71646B01B86E50310
-
-- name: Common | Remove Duplicity PPA repo
-  become: true
-  apt_repository:
-    repo: ppa:duplicity-team
-    state: absent
-  tags: common
-
 - name: Common | Update apt cache
   become: true
   apt: update-cache=yes
